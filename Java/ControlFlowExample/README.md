@@ -1,154 +1,489 @@
-## 1. 조건문, 반복문 설명
+# 조건 반복문을 사용한 알고리즘 문제
+
+### 결과물
+
 ```java
-public class ControlFlowEx {
+Level 1
 
-	// 조건문
-	// if
-	public void checkIf() {
-		int a = 10;
-		int b = 5;
-		if(a > b) {
-			//a가 b보다 크면 실행되는 영역
-			System.out.println("a가 b보다 큽니다");
-		}else if(a == b) {
-			//a와 b가 같으면 실행되는 영역
-			System.out.println("a와 b가 같습니다");
-		}else {
-			System.out.println("a가 b보다 작습니다");
-			//a가 b보다 작으면 실행되는 영역
-		}
-	}
+A   
+AA   
+AAA  
+AAAA  
+AAAAA  
 
-	//switch
-	public void checkSwitch() {
-		int a = 10;
-		switch(a) {
-			case 5:
-				System.out.println("a가 값이 5입니다");
-				break;
-			case 10:
-				System.out.println("a의 값이 10입니다");
-				break;
-			default:
-				System.out.println("a가 5,10이 아닌 다른 값 입니다");
-				break;
-		}
-	}
+Level 2    
+    A  
+   AA  
+  AAA  
+ AAAA  
+AAAAA  
 
-	//반복문
-	//for
-	public void checkFor() {
-		// 배열은 Index 0부터 시작
-		int array[] = {1,2,3,4,5,6,7};
+Level 3  
+    A      
+   AAA     
+  AAAAA    
+ AAAAAAA   
+AAAAAAAAA
 
-		//과거 for문
-		for(int i=0; i<array.length; i++){
-			System.out.println(array[i]);
-		}
+Level 3.5
+    A    
+   A A   
+  A   A  
+ A     A
+A       A
 
-		//향상된 for문 <왼쪽 : 오른쪽 자료형에 맡게 / 오른쪽 : for문에 쓸 ...>
-		for(int j : array) {
-			System.out.println(j);
-		}
-	}
+Level 3.6
+    A    
+   A A   
+  A   A  
+ A     A
+AAAAAAAAA
 
-	//while
-	public void checkWhile() {
-		int array[] = {1,2,3,4,5,6,7};
+Level 3.8
+    A    
+   AAA   
+  AAAAA  
+ AAAAAAA
+AAAAAAAAA
+ AAAAAAA
+  AAAAA  
+   AAA   
+    A    
 
-		//while문이란 반복이 가능한 if문
-		int count=0;
-		while(count<array.length) {
-			System.out.println(array[count]);
-			count++;
-		}
-	}
+Level 4
+    A     
+   A A    
+  A A A   
+ A A A A  
+A A A A A
+ AAAAAAA
+  AAAAA  
+   AAA   
+    A    
 
-	//do while
-	//while문의 조건에 상관없이 do 블럭이 한번은 실행된다
-	public void checkDoWhile() {
-		int array[] = {1,2,3,4,5,6,7};
-		int count = 0;
-		do {
-			System.out.println(array[count]);
-			count++;			
-		}while(count < array.length);
-	}
+Level 5
+    A    
+   A A   
+  A   A  
+ A     A
+A       A
+ A     A
+  A   A
+   A A  
+    A   
 
-}
+Level 5.5
+X       X
+ X     X
+  X   X  
+   X X   
+    X    
+   X X   
+  X   X  
+ X     X
+X       X
+
+Level 5.7
+AAAAAAAAA
+A       A
+A       A
+A       A
+A       A
+A       A
+A       A
+A       A
+AAAAAAAAA
+
+Level 6
+A      A      A      A      A      A      A
+      A     A     A     A     A     A
+           A    A    A    A    A
+               A   A   A   A
+                  A  A  A
+                    A A
+                     A
+
+Level 7
+               A            A
+          A                      A
+      A                              A
+   A                                    A
+ A                                        A
+A                                          A
 ```
 
-
-## 2. 잔돈 구하기
-
-### 1. 반복문 없이
+### 소스코드
+##### 1. 메인
 
 ```java
-public class CalcChange {
-
+public class Main {
 	public static void main(String[] args) {
-		CalcChange newClass = new CalcChange();
-		newClass.calc(10000, 3750);
+		Test test01 = new Test();
+		System.out.println("Level 1");
+		test01.level1("A",5);
+		System.out.println("\n"+"Level 2");
+		test01.level2("A",5);
+		System.out.println("\n"+"Level 3");
+		test01.level3("A",5);
+		System.out.println("\n"+"Level 3.5");
+		test01.level3point5("A",5);
+		System.out.println("\n"+"Level 3.6");
+		test01.level3point6("A",5);
+		System.out.println("\n"+"Level 3.8");
+		test01.level3point8("A",5);
+		System.out.println("\n"+"Level 4");
+		test01.level4("A",5);
+		System.out.println("\n"+"Level 5");
+		test01.level5("A",5);
+		System.out.println("\n"+"Level 5.5");
+		test01.level5point5("X",5);
+		System.out.println("\n"+"Level 5.7");
+		test01.level5point7("A",5);
+		System.out.println("\n"+"Level 6");
+		test01.level6("A",7);
+		System.out.println("\n"+"Level 7");
+		test01.level7("A",6);
 	}
-	public void calc(int pay, int buy)
-	{
-		//1번째 방법
-		int gross = pay-buy;
-		int a = (pay-buy)/5000;
-		int b = (pay-(buy+5000*a))/1000;
-		int c = (pay-(buy+5000*a+1000*b))/500;
-		int d = (pay-(buy+5000*a+1000*b+500*c))/100;
-		int e = (pay-(buy+5000*a+1000*b+500*c+100*d))/50;
-		int f = (pay-(buy+5000*a+1000*b+500*c+100*d+50*e))/10;
-		System.out.println("총 거스름돈 : "+gross+"\n5000원 : "+a+"\n1000원 : "+b+"\n500원 : "+c+"\n100원 : "+d+"\n50원 : "+e+"\n10원 : "+f);
-
-
-		/*2번째 방법
-		int change = pay-buy;
-		System.out.pritnln("거스름돈 = %d \n",change);
-		int temp - change/5000;
-		System.out.pritnln("5000원 = %d \n",temp);
-		change = change %5000;
-		temp = change/1000;
-		System.out.pritnln("1000원 = %d \n",temp);
-		change = change%1000;
-		temp = change/500;
-		System.out.pritnln("500원 = %d \n",temp);
-		change = change%500;
-		temp = change/100;
-		System.out.pritnln("100원 = %d \n",change/100);
-		change = change%100;
-		System.out.pritnln("100원 = %d \n",change/50);
-		change = change%50;
-		System.out.pritnln("100원 = %d \n",change/10);
-		*/
-	}
-
-}
-
 ```
-### 2. 배열 + 반복문 사용
+##### 2. 메소드
 ```java
-public class ArrayWithChange {
+public class Test {
 
-	public static void main(String[] args) {
-		ArrayWithChange newClass = new ArrayWithChange();
-		newClass.calc(10000, 3750);
-		}
-	public void calc(int pay, int buy)
-	{
-		int changeArray[] = {5000,1000,500,100,50,10};
-		int change = pay-buy;
-		print("총 거스름돈 : ", change);
-		for(int money : changeArray)
+	public void level1(String mark,int lines) {
+		for(int index=0;index<lines;index++)
 		{
-			System.out.println(money+"원 : "+change/money);
-			change %= money;
+			for(int innerindex=0;innerindex<=index; innerindex++)
+			{
+				System.out.print(mark);
+			}
+			System.out.println("");
 		}
 	}
-	public void print(String flag, int count) {
-		System.out.println(flag+count);
 
+	public void level2(String mark,int lines) {
+		for(int index=lines;index>0;index--)
+		{
+			for(int innerspace=index;innerspace>1;innerspace--)
+			{
+				System.out.print(" ");
+			}
+			for(int innerindex=0;innerindex<=lines-index; innerindex++)
+			{
+				System.out.print(mark);
+			}
+			System.out.println("");
+		}
 	}
+
+	public void level3(String mark,int lines) {
+		for(int index=lines;index>0;index--)
+		{
+			for(int innerspace=index;innerspace>1;innerspace--)
+			{
+				System.out.print(" ");
+			}
+			for(int innerindex=0;innerindex<=(lines-index)*2; innerindex++)
+			{
+				System.out.print(mark);
+			}
+			for(int innerspace=index;innerspace>1;innerspace--)
+			{
+				System.out.print(" ");
+			}
+			System.out.println("");
+		}
+	}
+
+	public void level3point5(String mark,int lines) {
+		for(int index=lines;index>0;index--)
+		{
+			for(int innerspace=index;innerspace>1;innerspace--)
+			{
+				System.out.print(" ");
+			}
+			System.out.print(mark);
+			for(int innerindex=0;innerindex<(lines-index)*2-1; innerindex++)
+			{
+				System.out.print(" ");
+			}
+			if(index!=lines) {
+				System.out.print(mark);
+			}
+			for(int innerspace=index;innerspace>1;innerspace--)
+			{
+				System.out.print(" ");
+			}
+			System.out.println("");
+		}
+	}
+
+	public void level3point6(String mark,int lines) {
+		for(int index=lines;index>0;index--)
+		{
+			for(int innerspace=index;innerspace>1;innerspace--)
+			{
+				System.out.print(" ");
+			}
+			System.out.print(mark);
+			if(index!=1) {
+			for(int innerindex=0;innerindex<(lines-index)*2-1; innerindex++)
+				{
+					System.out.print(" ");
+				}
+			}else {
+				for(int innerindex=0;innerindex<(lines-index)*2-1; innerindex++)
+				{
+					System.out.print(mark);
+				}
+			}
+			if(index!=lines) {
+				System.out.print(mark);
+			}
+			for(int innerspace=index;innerspace>1;innerspace--)
+			{
+				System.out.print(" ");
+			}
+			System.out.println("");
+		}
+	}
+
+	public void level3point8(String mark,int lines) {
+		for(int index=lines;index>0;index--)
+		{
+			for(int innerspace=index;innerspace>1;innerspace--)
+			{
+				System.out.print(" ");
+			}
+			for(int innerindex=0;innerindex<=(lines-index)*2; innerindex++)
+			{
+				System.out.print(mark);
+			}
+			for(int innerspace=index;innerspace>1;innerspace--)
+			{
+				System.out.print(" ");
+			}
+			System.out.println("");
+		}
+		for(int index=1;index<lines;index++)
+		{
+			for(int innerspace=0;innerspace<index;innerspace++)
+			{
+				System.out.print(" ");
+			}
+			for(int innerindex=(lines-index)*2-1;innerindex>0; innerindex--)
+			{
+				System.out.print(mark);
+			}
+			for(int innerspace=0;innerspace<index;innerspace++)
+			{
+				System.out.print(" ");
+			}
+			System.out.println("");
+		}
+	}
+
+	public void level4(String mark,int lines) {
+		for(int index=lines;index>0;index--)
+		{
+			for(int innerspace=index;innerspace>1;innerspace--)
+			{
+				System.out.print(" ");
+			}
+			for(int innerindex=0;innerindex<=(lines-index); innerindex++)
+			{
+				System.out.print(mark);
+				System.out.print(" ");
+			}
+			for(int innerspace=index;innerspace>1;innerspace--)
+			{
+				System.out.print(" ");
+			}
+			System.out.println("");
+		}
+		for(int index=1;index<lines;index++)
+		{
+			for(int innerspace=0;innerspace<index;innerspace++)
+			{
+				System.out.print(" ");
+			}
+			for(int innerindex=(lines-index)*2-1;innerindex>0; innerindex--)
+			{
+				System.out.print(mark);
+			}
+			for(int innerspace=0;innerspace<index;innerspace++)
+			{
+				System.out.print(" ");
+			}
+			System.out.println("");
+		}
+	}
+
+	public void level5(String mark,int lines) {
+		for(int index=lines;index>0;index--)
+		{
+			for(int innerspace=index;innerspace>1;innerspace--)
+			{
+				System.out.print(" ");
+			}
+			System.out.print(mark);
+			for(int innerindex=0;innerindex<(lines-index)*2-1; innerindex++)
+			{
+				System.out.print(" ");
+			}
+			if(index!=lines) {
+				System.out.print(mark);
+			}
+			for(int innerspace=index;innerspace>1;innerspace--)
+			{
+				System.out.print(" ");
+			}
+			System.out.println("");
+		}
+		for(int index=1;index<lines;index++)
+		{
+			for(int innerspace=0;innerspace<index;innerspace++)
+			{
+				System.out.print(" ");
+			}
+			System.out.print(mark);
+			for(int innerindex=(lines-index)*2-2;innerindex>1; innerindex--)
+			{
+				System.out.print(" ");
+			}
+			if(index!=lines-1) {
+				System.out.print(mark);
+			}
+			for(int innerspace=index;innerspace>1;innerspace--)
+			{
+				System.out.print(" ");
+			}
+			System.out.println("");
+		}
+	}
+
+	public void level5point5(String mark,int lines) {
+		for(int index=0;index<lines;index++)
+		{
+			for(int innerspace=0;innerspace<index;innerspace++)
+			{
+				System.out.print(" ");
+			}
+			System.out.print(mark);
+			for(int innerindex=(lines-index)*2-3;innerindex>0; innerindex--)
+			{
+				System.out.print(" ");
+			}
+			if(index!=lines-1) {
+				System.out.print(mark);
+			}
+			for(int innerspace=0;innerspace<index;innerspace++)
+			{
+				System.out.print(" ");
+			}
+			System.out.println("");
+		}
+		for(int index=lines-1;index>0;index--)
+		{
+			for(int innerspace=index;innerspace>1;innerspace--)
+			{
+				System.out.print(" ");
+			}
+			System.out.print(mark);
+			for(int innerindex=0;innerindex<(lines-index)*2-1; innerindex++)
+			{
+				System.out.print(" ");
+			}
+			System.out.print(mark);
+			for(int innerspace=index;innerspace>1;innerspace--)
+			{
+				System.out.print(" ");
+			}
+			System.out.println("");
+		}
+	}
+
+	public void level5point7(String mark,int lines) {
+
+		for(int index=0; index<lines*2-1; index++){
+			if(index==0){
+				for(int innerindex=0; innerindex<lines*2-1; innerindex++){
+				System.out.print(mark);
+				}
+				System.out.println("");
+			}
+			if(index!=0&&index!=lines*2-2){
+				System.out.print(mark);
+				for(int innerindex=0; innerindex<lines*2-3; innerindex++) {
+					System.out.print(" ");
+				}
+				System.out.print(mark);
+				System.out.println("");
+			}
+			if(index==lines*2-2)
+			{
+				for(int innerindex=0; innerindex<lines*2-1; innerindex++){
+				System.out.print(mark);
+				}
+				System.out.println("");
+			}
+		}
+	}
+	public void level6(String mark,int lines) {
+		for(int index=lines;index>0;index--)//6,5,4,3,2,1
+		{
+			for(int innerspace3=lines;innerspace3>index;innerspace3--)//1,2,3,4,5,6
+			{
+				for(int innerspace4=innerspace3;innerspace4>1;innerspace4--)//1->0 2->1 3->2
+				{
+					System.out.print(" ");
+				}
+			}
+			for(int innerspace=index;innerspace>1;innerspace--)
+			{
+				System.out.print(mark);
+				int innerspace2=index-1;
+				while(innerspace2>0) {
+						System.out.print(" ");
+						innerspace2--;
+				}		
+			}
+				System.out.print(mark);
+				System.out.println("");
+		}
+	}
+	public void level7(String mark, int lines) {
+		/*
+		 for(int index=lines;index>0;index--)//6,5,4,3,2,1
+		{
+			for(int innerspace3=lines;innerspace3>index;innerspace3--)//1,2,3,4,5,6
+			{
+				for(int innerspace4=innerspace3;innerspace4>1;innerspace4--)//1->0 2->1 3->2
+				{
+					System.out.print(" ");
+				}
+			}
+		 */
+		for(int index=lines;index>0;index--) //6,5,4,3,2,1 6번
+		{
+			for(int leftspace=index;leftspace>0;leftspace--)//6->6,5,4,3,2,1 6번
+			{
+				for(int leftspace2=leftspace;leftspace2>1;leftspace2--) //6->6->5+4+3+2+1
+				{
+					System.out.print(" ");
+				}
+			}
+			System.out.print(mark);
+			for(int innerspace=lines;innerspace>=index;innerspace--)// 6->1,2,3,4,5,6
+			{
+				for(int innerspace2=innerspace*2;innerspace2>0;innerspace2--) //6->
+				{
+					System.out.print(" ");
+				}
+			}
+			System.out.print(mark);
+			System.out.println("");
+		}
+	}
+
 }
 ```
