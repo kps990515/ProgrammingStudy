@@ -2,4 +2,4 @@
 
 ## Study
 
-- ### [Java](https://github.com/kps990515/Study/tree/master/Java)
+- ### [Java](https://github.com/kps990515/ProgrammingStudy/tree/master/Java)
