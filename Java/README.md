@@ -12,5 +12,4 @@
   ##### 3. __조건문, 반복문__
   - [ControlFlowExample](https://github.com/kps990515/ProgrammingStudy/tree/master/Java/ControlFlowExample)
 
-- ### 날짜 별 공부내용 정리
-  ##### 1. __1일차__
+- ### 주제 별 참고내용 정리
