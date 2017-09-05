@@ -1,6 +1,6 @@
 # 주제별 참고정리
 
-### 1. [프리스쿨]()
+### 1. [프리스쿨](https://github.com/kps990515/ProgrammingStudy/tree/master/Java/%EA%B3%B5%EB%B6%80%EC%9E%90%EB%A3%8C/%ED%94%84%EB%A6%AC%EC%8A%A4%EC%BF%A8)
 ##### Git / ArrayList / Generic / HashMap / 객체, 클래스  
 ##### 디자인패턴 / Setter,Getter / Overriding, Overloading 등
 
