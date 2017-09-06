@@ -13,7 +13,6 @@
   - [ControlFlowExample](https://github.com/kps990515/ProgrammingStudy/tree/master/Java/ControlFlowExample)
 
   ##### 4.__조건문을 사용한 알고리즘__
-  -
-  [Algorithm](https://github.com/kps990515/ProgrammingStudy/tree/master/Java/Algorithm)
-
+  - [Algorithm](https://github.com/kps990515/ProgrammingStudy/tree/master/Java/Algorithm)
+  
 - ### [주제 별 참고내용 정리](https://github.com/kps990515/ProgrammingStudy/tree/master/Java/%EA%B3%B5%EB%B6%80%EC%9E%90%EB%A3%8C)
