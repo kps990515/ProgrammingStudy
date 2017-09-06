@@ -12,3 +12,5 @@
 ### 5. [Class & Object](https://github.com/kps990515/ProgrammingStudy/blob/master/Java/%EA%B3%B5%EB%B6%80%EC%9E%90%EB%A3%8C/004_Class%EC%99%80Object%EC%97%90%EB%8C%80%ED%95%9C%EC%9D%B4%ED%95%B4.pdf)
 
 ### 6. [OOP Solid](https://github.com/kps990515/ProgrammingStudy/tree/master/Java/%EA%B3%B5%EB%B6%80%EC%9E%90%EB%A3%8C/OOP%20Solid)
+
+###7. [String](https://github.com/kps990515/ProgrammingStudy/tree/master/Java/StringApi)
