@@ -26,8 +26,8 @@ public class AlgorithmCountNumber {
 
 > 1. n을 스트링으로 변환(P)
 > 2. for문으로 통해 m을 1부터 입력값까지 돌린다
-> 3. 돌릴 때 마다 m을 스트링으로 변환(O)
-> 4 . split("")으로 m을 각 숫자스트링단위로 쪼갠다(temp[])
+> 3. 돌릴 때 마다 m을 스트링으로 변환(O)  
+> 4. split("")으로 m을 각 숫자스트링단위로 쪼갠다(temp[])
 > 5. temp[]의 길이만큼 for문을 돌리면서  
 temp[index].equals(p)를 통해 개수를 ++ 한다.
 
