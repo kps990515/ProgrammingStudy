@@ -30,6 +30,7 @@ public class AlgorithmMain {
 	```
 #### 모두 다 더하는 공식
 ```java
+
 	public long sum(long max)
 	{
 		long result=0L;
