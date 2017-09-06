@@ -45,9 +45,11 @@ public class AlgorithmMain {
 		}
 		return result;
 	}
-	```
+```
+
 #### 짝수만 더하는 공식
 ```java
+
 	public long sumEven(long max)
 	{
 		long resultEven=0L;
@@ -58,6 +60,7 @@ public class AlgorithmMain {
 
 #### 홀수만 더하는 공식
 ```java
+
 	public long sumOdd(long max)
 	{
 		long resultOdd = 0L;
