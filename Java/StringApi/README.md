@@ -110,7 +110,7 @@ public void builderVsBuffer(){
 	System.out.println(buffer.toString());
 }
 ```
-##### 출처 : 이러쿵저러쿵(http://ooz.co.kr/298)
+##### 참고 사이트 : 이러쿵저러쿵(http://ooz.co.kr/298)
 
 ### String Constant pool
 
@@ -121,6 +121,8 @@ public void builderVsBuffer(){
   상수풀에 동일한 값의 문자열이 있을경우   
 	상수풀에 존재하는 문자열의 주소를 반환받고  
 	아닌경우 새로 생성된 주소를 반환받는다.  
+
+##### 참고 사이트 : is Data(http://hyunc87.tistory.com/9)
 
 ##### 코드
 
