@@ -57,8 +57,10 @@ public class AlgorithmMain {
 		return resultOdd;
 	}
 }
+```
 ### 실패작
-		/*
+```java
+
 		long resultOdd=0L;//1->+1 2->+0
 			//123->1번, 1234 -> 1번, 12345 ->1번+3, 123456 -> 1번 +3, 1234567 -> 2번 12345678 -> 2번, 123456789 -> 2번 +5 12345678910 -> 2번 +5
 			if(max==1)
@@ -89,6 +91,4 @@ public class AlgorithmMain {
 					resultOdd = (max+1)*((max+1)/4);
 				}
 			}
-			*/
-
 ```
