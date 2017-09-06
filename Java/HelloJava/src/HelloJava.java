@@ -64,8 +64,4 @@ public class HelloJava {
 			double dou=5.0%4.2;
 			System.out.println(" 2+3 : "+a+"\n 2-3 : "+b+"\n 2*3 : "+c+"\n 2/3 : "+d+"\n 5%3 : "+e+"\n 10%3 : "+f+"\n 5.0%4.2 : "+dou);
 		}
-
-
-	
-
 }
