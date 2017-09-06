@@ -13,4 +13,4 @@
 
 ### 6. [OOP Solid](https://github.com/kps990515/ProgrammingStudy/tree/master/Java/%EA%B3%B5%EB%B6%80%EC%9E%90%EB%A3%8C/OOP%20Solid)
 
-### 7. [String](https://github.com/kps990515/ProgrammingStudy/tree/master/Java/StringApi)
+### 7. [String](https://github.com/kps990515/ProgrammingStudy/tree/master/Java/%EA%B3%B5%EB%B6%80%EC%9E%90%EB%A3%8C/StringApi)
