@@ -27,7 +27,8 @@ public class AlgorithmMain {
 		System.out.println("짝수만 더한 결과값 : "+resultEven);
 		System.out.println("홀수만 더한 결과값 : "+resultOdd);
 	}
-	```
+```
+
 #### 모두 다 더하는 공식
 ```java
 
