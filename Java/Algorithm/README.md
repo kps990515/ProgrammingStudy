@@ -8,6 +8,8 @@
 > 2. max가 홀수일 때 : (max/2+1)*(max/2+1)  
 
 ### 성공작
+
+#### 메인
 ```java
 import java.util.Scanner;
 
@@ -25,6 +27,9 @@ public class AlgorithmMain {
 		System.out.println("짝수만 더한 결과값 : "+resultEven);
 		System.out.println("홀수만 더한 결과값 : "+resultOdd);
 	}
+	```
+#### 모두 다 더하는 공식
+```java
 	public long sum(long max)
 	{
 		long result=0L;
@@ -40,14 +45,19 @@ public class AlgorithmMain {
 		}
 		return result;
 	}
-	//짝수만 더하는 공식
+	```
+#### 짝수만 더하는 공식
+```java
 	public long sumEven(long max)
 	{
 		long resultEven=0L;
 		resultEven = (max/2)*(max/2)+(max/2);
 		return resultEven;
 	}
-	//홀수만 더하는 공식
+```
+
+#### 홀수만 더하는 공식
+```java
 	public long sumOdd(long max)
 	{
 		long resultOdd = 0L;
