@@ -65,3 +65,7 @@ It can also send commands to its associated view to change the view's presentati
  developers are able to reuse components quickly and easily in other applications.
  > 코드를 역활마다 쪼개놓기 때문에 다른 어플을 개발할 때도  
 같은 기능이 존재하면 코드를 재사용 할 수 있다.
+
+참고사이트 : 위키피디아(https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
+
+참고사이트 : 생활코딩(https://opentutorials.org/course/697/3828) 
