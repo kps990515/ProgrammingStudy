@@ -75,7 +75,7 @@ class Model
 	public void remove(int num)
 	{
 		int deleteIndex = -1;
-		for(int i = 0; i < list.size(); i++) {
+		for(int i = 0; i < list.size(); i++) {  //index를 알기 위해서 for문 사용
 			if(list.get(i).no == num) {
 				deleteIndex = i;
 				break;
