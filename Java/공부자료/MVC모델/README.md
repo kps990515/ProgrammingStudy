@@ -6,13 +6,13 @@
   구현자들 간의 커뮤니케이션의 효율성을 높이는 기법이다
 
 ### 정의
-- Model–view–controller (MVC) is a software architectural pattern  
-for implementing user interfaces on computers.    
->MVC란 유저인터페이스를 구현하기 위한 소프트웨어 설계패턴이다
-
 - MVC란 Model View Controller의 약자로 에플리케이션을 세가지의 역할로 구분한 개발 방법론이다.  
 사용자가 Controller를 조작하면 Controller는 Model을 통해서 데이터를 가져오고  
  그 정보를 바탕으로 시각적인 표현을 담당하는 View를 제어해서 사용자에게 전달하게 된다.
+
+- Model–view–controller (MVC) is a software architectural pattern  
+for implementing user interfaces on computers.    
+>MVC란 유저인터페이스를 구현하기 위한 소프트웨어 설계패턴이다
 
 - This is done to separate internal representations of information from the ways information is presented to, and accepted from, the user.  
 >정보가 어떻게 유저에게 표현되고 받아들여지는에 따라  
@@ -32,8 +32,8 @@ problem domain(문제영역만 중점적으로 보는)에 따라 보여준다
 - A model stores data that is retrieved according to commands  
  from the controller and displayed in the view.
 > Model은  
- 1. Controller에서 받은 명령
- 2. View에 표시된 내용  
+ Controller에서 받은 명령 & 
+ View에 표시된 내용  
 에 의해 검색된 데이터들을 저장한다
 
 ### View
@@ -68,4 +68,4 @@ It can also send commands to its associated view to change the view's presentati
 
 참고사이트 : 위키피디아(https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
 
-참고사이트 : 생활코딩(https://opentutorials.org/course/697/3828) 
+참고사이트 : 생활코딩(https://opentutorials.org/course/697/3828)
