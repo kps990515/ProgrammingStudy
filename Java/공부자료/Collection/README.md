@@ -28,7 +28,7 @@
 
 ### 동적 객체배열
 
-##### 1. List(ArrayList)
+#### 1. List(ArrayList)
 
 - index를 포함하는 동적 객체배열
 
@@ -79,7 +79,7 @@
 			//이렇게 하나씩 해줘야함... 그래서 귀찮 <제네릭>을 쓰자
 		}
 ```
-##### 2. ArrayList + Generic
+#### 2. ArrayList + Generic
 
 - 제네릭을 설정하면 그 타입밖에 못 넣는다
 - 선언 : 타입 + <제네릭타입> + 변수이름
@@ -101,7 +101,7 @@ list.add(new Item());
 		}
 ```
 
-##### Set
+#### Set
 - List와 유사한데 중복값을 허용하지 않는 동적 객체배열  
 - 선언 & 입력
 ```java
@@ -136,7 +136,7 @@ list.add(new Item());
 		set.remove("hello");
 ```
 
-##### Map(HashMap)
+#### Map(HashMap)
 
 - key, value로 구성된 동적 객체배열  
 
