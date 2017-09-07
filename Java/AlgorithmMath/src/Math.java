@@ -35,7 +35,7 @@ public class Math {
 		{
 			System.out.print(num+" ");
 		}
-		boolean check = main.checkAnagram("fuck","that");
+		boolean check = main.checkAnagram("Oh lame saint","The Mona Lisa");
 		System.out.println("");
 		System.out.println(check);
 	}
@@ -55,7 +55,7 @@ public class Math {
 			}
 		}
 		return result;
-		/*동적배열 사용하는 방법
+		동적배열 사용하는 방법
 		ArrayList<Integer> result = new ArrayList<>();
 		Set<Integer> treeSet = new TreeSet<>(); -> Set은 중복값이 입력되지 않는다
 		Random random = new Random();
@@ -71,7 +71,7 @@ public class Math {
 		}
 		
 		return result
-		 */
+		
 	}
 	
 	public boolean checkAnagram(String a, String b)
