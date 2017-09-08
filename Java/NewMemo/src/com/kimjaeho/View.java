@@ -36,6 +36,17 @@ public class View {
 		}
 	}
 	
+	public void showRead(Memo memo)
+	{
+		println("No. "+memo.no);
+		println("Author : "+memo.name);
+		println("Content : "+memo.content);
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		String formattedDate = sdf.format(memo.datetime);
+		println("Date:"+formattedDate);
+	}
+	
 	public void update(ArrayList <Memo> list,Scanner sc)
 	{
 		println("수정할 메모의 번호를 입력하세요 : ");

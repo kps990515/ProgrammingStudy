@@ -16,7 +16,6 @@ public class Controller {
 	public void process()
 	{
 		Scanner sc = new Scanner(System.in);
-		MemoMain main = new MemoMain();
 		
 		// 명령어를 입력받아서 후속처리
 		// c - create : 데이터 입력모드로 전환
@@ -46,11 +45,11 @@ public class Controller {
 				view.showRead(memo);
 				break;
 			case "u":
-				view.update(main.model.list, sc);
+				view.update(model.list, sc);
 				break;
 			case "d":
-				int num = main.view.remove(main.model.list, sc);
-				main.model.remove(num);
+				num = view.remove(model.list, sc);
+				model.remove(num);
 				break;
 			case "l":
 				ArrayList<Memo>list = model.getList();
@@ -58,6 +57,6 @@ public class Controller {
 				break;
 			}
 		}
-		main.view.println("시스템 종료");
+		view.println("시스템 종료");
 	}
 }

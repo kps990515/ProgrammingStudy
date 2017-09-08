@@ -25,7 +25,6 @@ public class MemoMain {
 	{
 		Scanner sc = new Scanner(System.in);
 		MemoMain main = new MemoMain();
-		
 		// 명령어를 입력받아서 후속처리
 		// c - create : 데이터 입력모드로 전환
 		// r - read   : 데이터 읽기모드로 전환
