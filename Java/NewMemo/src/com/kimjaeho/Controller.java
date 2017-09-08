@@ -1,5 +1,6 @@
 package com.kimjaeho;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Controller {
@@ -41,6 +42,8 @@ public class Controller {
 				break;
 			case "r":
 				int num = view.read(sc);
+				String temp[] = model.read(num);
+				view.showRead(temp);
 				break;
 			case "u":
 				view.update(main.model.list, sc);
@@ -50,8 +53,8 @@ public class Controller {
 				main.model.remove(num);
 				break;
 			case "l":
-				main.model.getList();
-				main.view.showList(main.model.list);
+				ArrayList<Memo>list = model.getList();
+				view.showList(list);
 				break;
 			}
 		}
