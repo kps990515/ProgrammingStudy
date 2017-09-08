@@ -42,8 +42,8 @@ public class Controller {
 				break;
 			case "r":
 				int num = view.read(sc);
-				String temp[] = model.read(num);
-				view.showRead(temp);
+				memo = model.read(num);
+				view.showRead(memo);
 				break;
 			case "u":
 				view.update(main.model.list, sc);

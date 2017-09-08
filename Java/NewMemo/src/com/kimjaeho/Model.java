@@ -109,6 +109,38 @@ public class Model {
 			}
 		}
 		
+		public Memo read(int num)
+		{
+			try(FileInputStream fis = new FileInputStream(database)) 
+			{
+				//2. 실제 file encoding을 바꿔주는 래퍼클래스를 삿용
+				InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
+				//3. 버퍼처리
+				BufferedReader br = new BufferedReader(isr);
+				
+				String row;
+				// 새로운 줄을 한줄씩 읽어서 row에 저장하고
+				// row가 null값이 될 때 까지 읽기 그리고 종료
+				while((row = br.readLine()) != null)
+				{
+					String tempRow[] = row.split(COLUMN_SEP);
+					Memo memo = new Memo();
+					memo.no = Integer.parseInt(tempRow[0]);
+					memo.name = tempRow[1];
+					memo.content = tempRow[2];
+					memo.datetime = Long.parseLong(tempRow[3]);
+					if(memo.no==num)
+					{
+						return memo;
+					}
+				}
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			return null;
+		}
 		public ArrayList<Memo> getList()
 		{
 			//데이터가 중복으로 쌓이지 않도록 저장소를 지워주는 작업이 필요하다(누군가가 불러오기 계속 클릭 할 시)
