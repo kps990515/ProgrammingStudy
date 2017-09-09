@@ -20,25 +20,33 @@ public class Model {
 		private final String DB_DIR = "G:\\Programming\\Java\\Database";
 		private final String DB_FILE = "memo.txt";
 		private File database = null;
+		//번호데이터베이스 주소 : 상수
+		private final String NO_DIR = "G:\\Programming\\Java\\Database";
+		private final String NO_FILE = "number.txt";
+		private File noDatabase = null;
+		
 
 		//new하는 순간 이 영역이 실행된다
 		public Model()
 		{
 			File dir = new File(DB_DIR);
+			File dir2 = new File(NO_DIR);
 			// 디렉토리 존재 유무 체크
-			if(dir.exists())
+			if(dir.exists()&&dir2.exists())
 			{
 				dir.mkdirs(); // 경로상에 디렉토리가 없으면 자동생성
 				//dir.mkdir() -> 경로상에 비어있는게 있으면 에러
 			}
 			// seperator = OS마다 다른 디렉토리 사이에 있는 슬래쉬 추가해주는 것(\\)
 			File file = new File(DB_DIR + File.separator + DB_FILE);
+			File file2 = new File(NO_DIR + File.separator + NO_FILE);
 			// 파일의 존재유무
-			if(!file.exists())
+			if(!file.exists()||!file.exists())
 			{
 				try 
 				{
 					file.createNewFile();
+					file2.createNewFile();
 				}
 				catch(Exception e) 
 				{
@@ -46,6 +54,7 @@ public class Model {
 				}
 			}
 			database = file;
+			noDatabase = file2;
 		}
 
 		// 내용을 구분하기 위한 :: 을 상수로 선언
@@ -53,21 +62,24 @@ public class Model {
 		
 		public void create(Memo memo)
 		{
-			//글번호
-			memo.no = lastIndex++;
-
 			//쓰는(output) Stream을 선언
 			FileOutputStream fos = null;
-			
+			FileOutputStream fos2 = null;
+			for(int num=1; num<memo)
+			{
+				
+			}
 			try 
 			{
 				//1. 쓰는(output) Stream을 연다
 				fos = new FileOutputStream(database, true);
+				fos2 = new FileOutputStream(noDatabase, true);
 				//2. Stream을 중간처리(텍스트 enconding 변경) -> 래퍼 Stream
 				OutputStreamWriter osw = new OutputStreamWriter(fos);
+				OutputStreamWriter osw2 = new OutputStreamWriter(fos2);
 				//3. 버퍼처리
 				BufferedWriter bw = new BufferedWriter(osw);
-				
+				BufferedWriter bw2 = new BufferedWriter(osw2);
 				//저장할 내용을 구분자로 분리하여 한줄의 문자열로 바꾼다.
 				String row = memo.no + COLUMN_SEP + memo.name + COLUMN_SEP + memo.content + COLUMN_SEP + memo.datetime + "\n";
 				// 내용 넣어주기(안끄면 버퍼 다 찰 때까지 계속 저장만함)
