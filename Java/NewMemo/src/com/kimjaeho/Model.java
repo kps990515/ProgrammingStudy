@@ -9,12 +9,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Model {
 	//전체 메모를 저장하는 저장소
 		ArrayList<Memo> list = new ArrayList<>();
 		//마지막 글번호
-		int lastIndex = 1;
 		
 		//데이터베이스 주소 : 상수
 		private final String DB_DIR = "G:\\Programming\\Java\\Database";
@@ -62,13 +63,31 @@ public class Model {
 		
 		public void create(Memo memo)
 		{
+			//Number파일 읽어오기
+			try(FileInputStream fis = new FileInputStream(noDatabase)) 
+			{
+				//2. 실제 file encoding을 바꿔주는 래퍼클래스를 삿용
+				InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
+				//3. 버퍼처리
+				BufferedReader br = new BufferedReader(isr);
+				String row;
+				// 새로운 줄을 한줄씩 읽어서 row에 저장하고
+				// row가 null값이 될 때 까지 읽기 그리고 종료
+				while((row = br.readLine()) != null)
+				{	//set으로 만들어버릴까?
+					String tempRow[]=row.split("\n");
+					int length = tempRow.length;
+					memo.no = length;
+				}
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
 			//쓰는(output) Stream을 선언
 			FileOutputStream fos = null;
 			FileOutputStream fos2 = null;
-			for(int num=1; num<memo)
-			{
-				
-			}
+			
 			try 
 			{
 				//1. 쓰는(output) Stream을 연다
@@ -82,10 +101,13 @@ public class Model {
 				BufferedWriter bw2 = new BufferedWriter(osw2);
 				//저장할 내용을 구분자로 분리하여 한줄의 문자열로 바꾼다.
 				String row = memo.no + COLUMN_SEP + memo.name + COLUMN_SEP + memo.content + COLUMN_SEP + memo.datetime + "\n";
+				String number = memo.no + "\n";
 				// 내용 넣어주기(안끄면 버퍼 다 찰 때까지 계속 저장만함)
 				bw.append(row);
+				bw2.append(number);
 				//버퍼 내용을 강제로 내보내기
 				bw.flush();
+				bw2.flush();
 				// bw.close() -> 버퍼 끄기 
 			} 
 			/* <원래는 1번 & append 예외처리 각각 해줘야하지만> 상위인 Exception으로 해결
