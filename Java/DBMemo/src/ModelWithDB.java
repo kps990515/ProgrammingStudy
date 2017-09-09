@@ -1,4 +1,4 @@
-package com.kimjaeho;
+
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -90,7 +90,7 @@ public class ModelWithDB {
 				memo.no = rs.getInt("no");
 				memo.name = rs.getString("name");
 				memo.content = rs.getString("content");
-				memo.datetime = rs.getLong("datetime");
+				memo.datetime = rs.getTimestamp("datetime").getTime();
 			}
 		} 
 		catch (Exception e) 
