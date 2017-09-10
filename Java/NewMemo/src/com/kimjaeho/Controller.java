@@ -51,7 +51,7 @@ public class Controller {
 				model.update(memo);
 				break;
 			case "d":
-				num = view.remove(model.list, sc);
+				num = view.remove(sc);
 				model.remove(num);
 				break;
 			case "l":

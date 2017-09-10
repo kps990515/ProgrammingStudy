@@ -59,7 +59,7 @@ public class View {
 			return memo;	
 	}
 	
-	public int remove(ArrayList <Memo> list, Scanner sc)
+	public int remove(Scanner sc)
 	{
 		int num;
 		println("삭제할 메모의 번호를 입력하세요 : ");

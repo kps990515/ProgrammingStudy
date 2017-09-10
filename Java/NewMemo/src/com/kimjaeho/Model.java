@@ -25,7 +25,9 @@ public class Model {
 		private final String NO_DIR = "G:\\Programming\\Java\\Database";
 		private final String NO_FILE = "number.txt";
 		private File noDatabase = null;
-		
+
+		// 내용을 구분하기 위한 :: 을 상수로 선언
+		private final String COLUMN_SEP = "::";
 
 		//new하는 순간 이 영역이 실행된다
 		public Model()
@@ -33,7 +35,7 @@ public class Model {
 			File dir = new File(DB_DIR);
 			File dir2 = new File(NO_DIR);
 			// 디렉토리 존재 유무 체크
-			if(dir.exists()&&dir2.exists())
+			if(!dir.exists()||!dir2.exists())
 			{
 				dir.mkdirs(); // 경로상에 디렉토리가 없으면 자동생성
 				//dir.mkdir() -> 경로상에 비어있는게 있으면 에러
@@ -58,8 +60,6 @@ public class Model {
 			noDatabase = file2;
 		}
 
-		// 내용을 구분하기 위한 :: 을 상수로 선언
-		private final String COLUMN_SEP = "::";
 		
 		public void create(Memo memo)
 		{
