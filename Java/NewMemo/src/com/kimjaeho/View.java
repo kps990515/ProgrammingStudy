@@ -47,25 +47,16 @@ public class View {
 		println("Date:"+formattedDate);
 	}
 	
-	public void update(ArrayList <Memo> list,Scanner sc)
+	public Memo update(Memo memo,Scanner sc)
 	{
-		println("수정할 메모의 번호를 입력하세요 : ");
-		String temp = scannerS(sc);
-		int num = Integer.parseInt(temp);
-		for(Memo memo : list)
-		{
-			if(memo.no==num)
-			{
-				println("이름을 입력하세요 : ");
-				memo.name = scannerS(sc);
-				println("내용을 입력하세요 : ");
-				memo.content = scannerS(sc);
-				//날짜
-				memo.datetime = System.currentTimeMillis();
-				// 글 하나를 저장한 메모리를 저장소로 이동		
-				break;	
-			}
-		}
+			println("이름을 입력하세요 : ");
+			memo.name = scannerS(sc);
+			println("내용을 입력하세요 : ");
+			memo.content = scannerS(sc);
+			//날짜
+			memo.datetime = System.currentTimeMillis();
+			// 글 하나를 저장한 메모리를 저장소로 이동		
+			return memo;	
 	}
 	
 	public int remove(ArrayList <Memo> list, Scanner sc)

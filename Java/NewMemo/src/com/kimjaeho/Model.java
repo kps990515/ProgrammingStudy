@@ -77,7 +77,14 @@ public class Model {
 				{	//set으로 만들어버릴까?
 					String tempRow[]=row.split("\n");
 					int length = tempRow.length;
-					memo.no = length;
+					if(length==0)
+					{
+						memo.no = 0;
+					}
+					else
+					{
+					memo.no = Integer.parseInt(maxNum(tempRow,length))+1;
+					}
 				}
 			}
 			catch(Exception e)
@@ -175,6 +182,103 @@ public class Model {
 			}
 			return null;
 		}
+		
+		public void update(Memo memo)
+		{	
+			String temprow="";
+			//1. 읽는 스트림을 연다
+			//java8에서 바뀐 방법
+			//이렇게 하면 stream을 따로 끌 필요가 없다!!!
+			//try-with 절에서 자동으로 fis.close가 발생
+			try(FileInputStream fis = new FileInputStream(database)) 
+			{
+				//2. 실제 file encoding을 바꿔주는 래퍼클래스를 삿용
+				InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
+				//3. 버퍼처리
+				BufferedReader br = new BufferedReader(isr);
+				
+				String row;
+				// 새로운 줄을 한줄씩 읽어서 row에 저장하고
+				// row가 null값이 될 때 까지 읽기 그리고 종료
+				while((row = br.readLine()) != null)
+				{
+					String tempRow[] = row.split(COLUMN_SEP);
+					if(Integer.parseInt(tempRow[0])==memo.no)
+					{
+						temprow += memo.no + COLUMN_SEP + 
+									memo.name + COLUMN_SEP +
+									memo.content + COLUMN_SEP +
+									System.currentTimeMillis() + "\n";				
+					}
+					else
+					{
+						temprow += row + "\n";
+					}
+					
+				}
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			//쓰는stream 열기 (처음부터 다시 쓰기 위해 false!!)
+			try(FileOutputStream fos = new FileOutputStream(database, false))
+			{
+				OutputStreamWriter osw = new OutputStreamWriter(fos);
+				BufferedWriter bw = new BufferedWriter(osw);	
+				bw.append(temprow);
+				bw.flush();
+				
+			}catch(Exception e) 
+			{
+				e.printStackTrace();
+			}
+		}
+		
+		public void remove(int num)
+		{
+			String temprow="";
+			//1. 읽는 스트림을 연다
+			//java8에서 바뀐 방법
+			//이렇게 하면 stream을 따로 끌 필요가 없다!!!
+			//try-with 절에서 자동으로 fis.close가 발생
+			try(FileInputStream fis = new FileInputStream(database)) 
+			{
+				//2. 실제 file encoding을 바꿔주는 래퍼클래스를 삿용
+				InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
+				//3. 버퍼처리
+				BufferedReader br = new BufferedReader(isr);
+				
+				String row;
+				// 새로운 줄을 한줄씩 읽어서 row에 저장하고
+				// row가 null값이 될 때 까지 읽기 그리고 종료
+				while((row = br.readLine()) != null)
+				{
+					String tempRow[] = row.split(COLUMN_SEP);
+					if(Integer.parseInt(tempRow[0])!=num)
+					{
+						temprow += row+"\n"; 
+					}
+				}
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			//쓰는stream 열기 (처음부터 다시 쓰기 위해 false!!)
+			try(FileOutputStream fos = new FileOutputStream(database, false))
+			{
+				OutputStreamWriter osw = new OutputStreamWriter(fos);
+				BufferedWriter bw = new BufferedWriter(osw);	
+				bw.append(temprow);
+				bw.flush();
+				
+			}catch(Exception e) 
+			{
+				e.printStackTrace();
+			}
+		}
+		
 		public ArrayList<Memo> getList()
 		{
 			//데이터가 중복으로 쌓이지 않도록 저장소를 지워주는 작업이 필요하다(누군가가 불러오기 계속 클릭 할 시)
@@ -214,15 +318,17 @@ public class Model {
 			return list;
 		}
 		
-		public void remove(int num)
+		public String maxNum(String tempRow[],int length)
 		{
-			int deleteIndex = -1;
-			for(int i = 0; i < list.size(); i++) {  //index를 알기 위해서 for문 사용
-				if(list.get(i).no == num) {
-					deleteIndex = i;
-					break;
+			for(int i=0;i<length-1;i++)
+			{//01234
+				if(Integer.parseInt(tempRow[i])>Integer.parseInt(tempRow[i+1]))
+				{
+					String temp = tempRow[i];
+					tempRow[i] = tempRow[i+1];
+					tempRow[i+1] = temp;
 				}
 			}
-			if(deleteIndex >= 0) list.remove(deleteIndex);
+			return tempRow[length-1];
 		}
 }

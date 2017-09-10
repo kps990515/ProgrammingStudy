@@ -45,7 +45,10 @@ public class Controller {
 				view.showRead(memo);
 				break;
 			case "u":
-				view.update(model.list, sc);
+				num = view.read(sc);
+				memo = model.read(num);
+				memo = view.update(memo, sc);
+				model.update(memo);
 				break;
 			case "d":
 				num = view.remove(model.list, sc);
