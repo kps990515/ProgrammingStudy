@@ -164,9 +164,9 @@ public class Model {
 #### Model.create - 내용을 파일에 넣기
 
 1. number파일에서 파일번호들을 읽어온다
-1-1. 저장된 번호가 없으면 memo.no = 1  
-1-2. 번호가 있으면 memo.no = 가장 큰 번호 + 1  
-2. 내용파일에 view.create에서 입력된 내용들을 입력한다
+2. 저장된 번호가 없으면 memo.no = 1  
+3. 번호가 있으면 memo.no = 가장 큰 번호 + 1  
+4. 내용파일에 view.create에서 입력된 내용들을 입력한다
 
 ```java
 public void create(Memo memo)
