@@ -24,7 +24,7 @@
   ##### 7.__메모장 만들기__
   - [Memo](https://github.com/kps990515/ProgrammingStudy/tree/master/Java/Memo)  
 
-  ##### 8.__File I/O 이용 메모장 __
+  ##### 8.__File I/O 이용 메모장__
   - [NewMemo](https://github.com/kps990515/ProgrammingStudy/tree/master/Java/NewMemo)
 
 - ### [주제 별 참고내용 정리](https://github.com/kps990515/ProgrammingStudy/tree/master/Java/%EA%B3%B5%EB%B6%80%EC%9E%90%EB%A3%8C)

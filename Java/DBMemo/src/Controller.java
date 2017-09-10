@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Controller {
-	Model model;
+	ModelWithDB model;
 	View view;
 	
 	//Controller
-	public Controller(Model model, View view)
+	public Controller(ModelWithDB model, View view)
 	{
 		this.model = model;
 		this.view = view;
