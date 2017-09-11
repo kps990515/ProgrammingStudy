@@ -2,6 +2,8 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class AnnoMain {
 
@@ -32,9 +34,30 @@ public class AnnoMain {
 // 주로 공통파트 개발자나 오픈소스 개발자들이
 // 라이브러리를 조금 더 쉽게 사용하기 위하여 만들어 제공한다.
 
-@CustomAnnotation(key = "Student") 
-// sql연결할떄는 여기다가 (url="주소", id="아이디", pw="패스워드" 식으로 사용해도 ㄱㅊ)
+
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+@interface Getconnection{
+	public String url();
+	public String id();
+	public String pw();
+}
+
 class UseAnnotation{
 	String key = "Student"; 
 	// class와 annotation만드는 주체가 달라서 이렇게 중복으로 쓰일수도 있다
+	
+	@Getconnection(url = "주소", id = "아이디", pw = "패스워드")
+	
+	public void process() {
+		int a = 156;
+		int b=12312321;
+		int result = a+b/1450;
+	
+		try {
+			DriverManager.getConnection("주소","아이디","패스워드");
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
