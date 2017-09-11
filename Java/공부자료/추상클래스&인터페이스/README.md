@@ -1,4 +1,4 @@
-# 추상클래스 vs 인터페이스
+# 추상클래스 vs 인터페이스 & callback
 - 상속받는 클래스, 구현 인터페이스 안에 있는 추상메소드를 구현하도록 강제
 
 ### 추상클래스
@@ -124,8 +124,14 @@ class Refrigerator implements RemoteControl {
 - A가 B를 호출하여 B가 작업을 수행하다 어떤시점에서 다시 B는 A를 호출, 그 때 A가 정해놓은 작업을 수행하는 것
 - 결국 function이 자신의 일부를 넘기는 행위
 
+#### 사용이유
+- 서버로 부터 빠른 데이타를 수신하기 위해서 AJAX가 아닌 JSON을 많이 사용하게 된다.
+- 이렇게 하면 문제는 동기화 방식으로 동작을 하기 때문에 순차적으로 데이타를 전달받게 된다.__(느림)__
+- AJAX요청과 함께 사용하면 정말 강력하다. AJAX특성상 서버의 응답도 영향이 있기 때문에 같은 요청도 같은 컴퓨터일지라도 네트워크 환경 등 여러가지 변수 때문에 반응 속도가 천차만별이다.
+- 하지만 콜백함수를 이용하게 되면 콜백함수가 완료 메시지를 전달함으로써 확실히 가져온 데이터를 가지고 처리를 할 수 있게 된다.
+
 #### 예시
-![예시]()
+![예시](https://github.com/kps990515/ProgrammingStudy/blob/master/Java/%EA%B3%B5%EB%B6%80%EC%9E%90%EB%A3%8C/%EC%B6%94%EC%83%81%ED%81%B4%EB%9E%98%EC%8A%A4%26%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4/KakaoTalk_20170911_204030423.jpg)
 
 ### 참고사항
 - module = 독립적으로 compile가능한것(제작자가 다름)
@@ -142,3 +148,5 @@ class Refrigerator implements RemoteControl {
 - 참고사이트 : 사용이유(https://brunch.co.kr/@kd4/6)
 - 참고사이트 : 사용이유 심화(http://alecture.blogspot.kr/2011/05/abstract-class-interface.html)
 - 참고사이트 : 코드예시(http://enter.tistory.com/122)
+- 참고사이트 : callback(https://brunch.co.kr/@kimkm4726/1)
+- 참고사이트 : callback 사용이유( http://lovestudycom.tistory.com/entry/콜백함수를-왜-사용하나)
