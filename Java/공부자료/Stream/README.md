@@ -24,31 +24,28 @@
 
 ### 스트림의 종류
 
-##### 1. 바이트 스트림
-[!]
-### Controller
-- the controller, accepts input and converts it to commands for the model or view.
-> controller는 입력을 받고 입력을 model이나 view가 받을 수 있는 명령으로 바꿔준다
+##### 1. 바이트 스트림 - 데이터를 byte단위로 주고받음
+![바이트스트림input](https://github.com/kps990515/ProgrammingStudy/blob/master/Java/%EA%B3%B5%EB%B6%80%EC%9E%90%EB%A3%8C/Stream/%EB%B0%94%EC%9D%B4%ED%8A%B8%EC%8A%A4%ED%8A%B8%EB%A6%BCinput.png)
 
-- controller can send commands to the model to update the model's state (e.g., editing a document).  
-It can also send commands to its associated view to change the view's presentation of the model
-> controller는 model의 상태를 바꾸기 위해 명령을 보낼 수 있다  
-> 또한 model을 표현하고 있는 view를 바꾸기 위해 명령을 보낸다
+![바이트스트림output](https://github.com/kps990515/ProgrammingStudy/blob/master/Java/%EA%B3%B5%EB%B6%80%EC%9E%90%EB%A3%8C/Stream/%EB%B0%94%EC%9D%B4%ED%8A%B8%EC%8A%A4%ED%8A%B8%EB%A6%BCoutput.png)
 
-### 목표
-##### 1. 동시개발
-- MVC decouples the various components of an application,  
- developers are able to work in parallel on  
-  different components without impacting or blocking one another.
-> MVC는 어플리케이션을 여러 부분으로 분리하기 때문에  
-개발자들이 서로 다른 부분을 평행적으로 충돌이나 방해 없이 개발할 수 있다.
+##### 2. 문자 스트림
+- 문자는 인코딩 방식에 따라서 byte의 크기가 다르다
+- 바이트 스트림으로 byte단위로 데이터를 받아오면
+- 맞는 인코딩 방식(자바 : utf-8)으로 byte를 묶어줘야한다
 
-##### 2. 코드 재사용성
-- By creating components that are independent of one another,  
- developers are able to reuse components quickly and easily in other applications.
- > 코드를 역활마다 쪼개놓기 때문에 다른 어플을 개발할 때도  
-같은 기능이 존재하면 코드를 재사용 할 수 있다.
+![문자스트림input](https://github.com/kps990515/ProgrammingStudy/blob/master/Java/%EA%B3%B5%EB%B6%80%EC%9E%90%EB%A3%8C/Stream/%EB%AC%B8%EC%9E%90%EC%8A%A4%ED%8A%B8%EB%A6%BCinput.png)
 
-참고사이트 : 위키피디아(https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
+![문자스트림output](https://github.com/kps990515/ProgrammingStudy/blob/master/Java/%EA%B3%B5%EB%B6%80%EC%9E%90%EB%A3%8C/Stream/%EB%AC%B8%EC%9E%90%EC%8A%A4%ED%8A%B8%EB%A6%BCoutput.png)
 
-참고사이트 : 생활코딩(https://opentutorials.org/course/697/3828)
+##### 2-1. Buffered - 문자스트림의 종류
+- 단독으로 바로 inputStream을 받지는 않는다
+- InputStreamReader가 한 문자씩 읽어들이면
+- 그 문자들을 인수로 받아 한 줄씩 출력할 수 있게 도와준다
+- 입/출력이 훨씬 효율적(readLine()이용!)
+
+참고사이트 : 스트림 정의(http://elena90.tistory.com/entry/Java-%ED%8C%8C%EC%9D%BC-%EC%9E%85%EC%B6%9C%EB%A0%A5%EC%8A%A4%ED%8A%B8%EB%A6%BCInputStreamOutputStreamReaderWriter)
+
+참고사이트 : 바이트 / 문자 스트림(http://stevenjsmin.tistory.com/96)
+
+참고사이트 : stream / buffered 차이(http://dodocap.tistory.com/entry/JAVA%EC%9D%98-%EC%9E%85%EC%B6%9C%EB%A0%A5-%EA%B8%B0%EB%B3%B8%EA%B0%9C%EB%85%90-Stream-ReaderWriter-Buffered)
