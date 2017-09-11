@@ -27,4 +27,7 @@
   ##### 8.__File I/O 이용 메모장__
   - [NewMemo](https://github.com/kps990515/ProgrammingStudy/tree/master/Java/NewMemo)
 
+  ##### 9.__두가지 타입 이상 담을 수 있는 동적객체배열__
+  - [Generic](https://github.com/kps990515/ProgrammingStudy/tree/master/Java/Generic)
+
 - ### [주제 별 참고내용 정리](https://github.com/kps990515/ProgrammingStudy/tree/master/Java/%EA%B3%B5%EB%B6%80%EC%9E%90%EB%A3%8C)
