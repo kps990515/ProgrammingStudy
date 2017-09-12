@@ -65,36 +65,16 @@ public class activity_calculator extends AppCompatActivity {
             // 1. 인텐트 (시스템에 전달되는 메시지 객체) 생성
 
             switch (v.getId()) {
-                case btn_one:
-                    textAdd("1");
-                    break;
-                case btn_two:
-                    textAdd("2");
-                    break;
-                case btn_three:
-                    textAdd("3");
-                    break;
-                case btn_four:
-                    textAdd("4");
-                    break;
-                case btn_five:
-                    textAdd("5");
-                    break;
-                case btn_six:
-                    textAdd("6");
-                    break;
-                case btn_seven:
-                    textAdd("7");
-                    break;
-                case btn_eight:
-                    textAdd("8");
-                    break;
-                case btn_nine:
-                    textAdd("9");
-                    break;
-                case btn_zero:
-                    textAdd("0");
-                    break;
+                case btn_one:   textAdd("1");   break;
+                case btn_two:   textAdd("2");   break;
+                case btn_three: textAdd("3");   break;
+                case btn_four:  textAdd("4");   break;
+                case btn_five:  textAdd("5");   break;
+                case btn_six:   textAdd("6");   break;
+                case btn_seven: textAdd("7");   break;
+                case btn_eight: textAdd("8");   break;
+                case btn_nine:  textAdd("9");   break;
+                case btn_zero:  textAdd("0");   break;
                 case btn_plus://3+5+6
                     s=cal.getText().toString();
                     s=addNum(s);
@@ -114,12 +94,8 @@ public class activity_calculator extends AppCompatActivity {
                     s=addNum(s);
                     numList.add(s);
                     textAdd("/");
-                    opList.add("/");//8-2/2+3*5=
-                 /*   private void textAdd(String num)
-                {
-                    cal.setText(cal.getText().toString() + num);
-                }
-                */
+                    opList.add("/");
+
                     break;
                 case btn_multi:
                     s=cal.getText().toString();
@@ -139,6 +115,7 @@ public class activity_calculator extends AppCompatActivity {
                     s=addNum(s);
                     numList.add(s);
                     textAdd("=");
+                    sort();
                     double sum=Integer.parseInt(numList.get(0));
                     for(int i=0; i<opList.size(); i++)
                     {
@@ -146,14 +123,8 @@ public class activity_calculator extends AppCompatActivity {
                             case "+":
                                 sum += Integer.parseInt(numList.get(i+1));
                                 break;
-                            case "*":
-                                sum *= Integer.parseInt(numList.get(i+1));
-                                break;
                             case "-":
                                 sum -= Integer.parseInt(numList.get(i+1));
-                                break;
-                            case "/":
-                                sum = sum / Integer.parseInt(numList.get(i+1));
                                 break;
                         }
                     }
@@ -201,6 +172,33 @@ public class activity_calculator extends AppCompatActivity {
             String numString = s.substring(index+1);
             return numString;
         }
+    }
+    //8-2/2+3*5  [8,2,2,3,5]  [- / + * ] [8 - 2 / 2 + 3 * 5 ] [8 / 2 - 4 + 5 *2 ]
+    public void sort()
+    {
+        int count=0;
+        int length=opList.size();
+        for(int j=0; j<length; j++)
+        {
+                if(j-count<opList.size()) {
+                String s = opList.get(j-count);
+                if (s.equals("/")) //[8,2,2,3,5]  [- / + * ]  i=1 count=0 -> [8,1,3,5] count=1 [- + *]
+                { // 3+6*3 [363] [+ *]
+                    numList.set(j, (double)Integer.parseInt(numList.get(j - count)) / (double)Integer.parseInt(numList.get(j + 1 - count)) + "");
+                    numList.remove(j + 1 - count);
+                    count++;
+                    opList.remove(j - count);
+                } // [8,1,3,5] count=1 [- + *] i=3
+                if (s.equals("*")) { // [3,18] [+]
+                    numList.set(j, (double)Integer.parseInt(numList.get(j - count)) * (double)Integer.parseInt(numList.get(j + 1 - count)) + "");
+                    numList.remove(j + 1 - count);
+                    count++;
+                    opList.remove(j - count);
+                }
+                // [8,1,15]  [-  + ]
+           }
+        }
+
     }
 
 }
