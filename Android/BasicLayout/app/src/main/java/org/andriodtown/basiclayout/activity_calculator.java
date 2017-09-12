@@ -75,7 +75,7 @@ public class activity_calculator extends AppCompatActivity {
                 case btn_eight: textAdd("8");   break;
                 case btn_nine:  textAdd("9");   break;
                 case btn_zero:  textAdd("0");   break;
-                case btn_plus://3+5+6
+                case btn_plus://321+543+63
                     s=cal.getText().toString();
                     s=addNum(s);
                     numList.add(s);
@@ -95,7 +95,6 @@ public class activity_calculator extends AppCompatActivity {
                     numList.add(s);
                     textAdd("/");
                     opList.add("/");
-
                     break;
                 case btn_multi:
                     s=cal.getText().toString();
@@ -176,27 +175,30 @@ public class activity_calculator extends AppCompatActivity {
     //8-2/2+3*5  [8,2,2,3,5]  [- / + * ] [8 - 2 / 2 + 3 * 5 ] [8 / 2 - 4 + 5 *2 ]
     public void sort()
     {
-        int count=0;
+        int count=0; // 6+3*2  [6 3 2] [+ *]
         int length=opList.size();
         for(int j=0; j<length; j++)
         {
                 if(j-count<opList.size()) {
-                String s = opList.get(j-count);
-                if (s.equals("/")) //[8,2,2,3,5]  [- / + * ]  i=1 count=0 -> [8,1,3,5] count=1 [- + *]
-                { // 3+6*3 [363] [+ *]
-                    numList.set(j, (double)Integer.parseInt(numList.get(j - count)) / (double)Integer.parseInt(numList.get(j + 1 - count)) + "");
-                    numList.remove(j + 1 - count);
-                    count++;
-                    opList.remove(j - count);
-                } // [8,1,3,5] count=1 [- + *] i=3
-                if (s.equals("*")) { // [3,18] [+]
-                    numList.set(j, (double)Integer.parseInt(numList.get(j - count)) * (double)Integer.parseInt(numList.get(j + 1 - count)) + "");
-                    numList.remove(j + 1 - count);
-                    count++;
-                    opList.remove(j - count);
+                    String s = opList.get(j-count);
+                    if (s.equals("/")) //[8,2,2,3,5]  [- / + * ]  i=1 count=0 -> [8,1,3,5] count=1 [- + *]
+                    {
+                        numList.set(j-count, ((double)Integer.parseInt(numList.get(j - count)) / (double)Integer.parseInt(numList.get(j + 1 - count))) + "");
+                        numList.remove(j + 1 - count);
+                        opList.remove(j - count);
+                        count++;
+                    } // [8,1,3,5] count=1 [- + *] i=3
+                    if (s.equals("*"))
+                    {
+                        numList.set(j-count, ((double) Integer.parseInt(numList.get(j - count)) * (double) Integer.parseInt(numList.get(j + 1 - count))) + "");
+                        numList.remove(j + 1 - count);
+                        opList.remove(j - count);
+                        count++;
+                    }
                 }
-                // [8,1,15]  [-  + ]
-           }
+                else{
+                    break;
+                }
         }
 
     }
