@@ -26,6 +26,7 @@ import static org.andriodtown.basiclayout.R.id.btn_zero;
 
 public class activity_calculator extends AppCompatActivity {
     private TextView cal;
+    private int sum;
     private ArrayList <String> numList = new ArrayList<>();
     private ArrayList <String> opList = new ArrayList<>();
     String s;
@@ -96,28 +97,33 @@ public class activity_calculator extends AppCompatActivity {
                     break;
                 case btn_plus://3+5+6
                     s=cal.getText().toString();
-                    s=addNum(s,"+");
+                    s=addNum(s);
                     numList.add(s);
                     textAdd("+");
                     opList.add("+");
                     break;
                 case btn_minus:
                     s=cal.getText().toString();
-                    s=addNum(s,"-");
+                    s=addNum(s);
                     numList.add(s);
                     textAdd("-");
                     opList.add("-");
                     break;
                 case btn_divide:
                     s=cal.getText().toString();
-                    s=addNum(s,"/");
+                    s=addNum(s);
                     numList.add(s);
                     textAdd("/");
-                    opList.add("/");
+                    opList.add("/");//8-2/2+3*5=
+                 /*   private void textAdd(String num)
+                {
+                    cal.setText(cal.getText().toString() + num);
+                }
+                */
                     break;
                 case btn_multi:
                     s=cal.getText().toString();
-                    s=addNum(s,"*");
+                    s=addNum(s);
                     numList.add(s);
                     textAdd("*");
                     opList.add("*");
@@ -128,13 +134,13 @@ public class activity_calculator extends AppCompatActivity {
                     numList.clear();
                     ((TextView)findViewById(R.id.txt_result)).setText("");
                     break;
-                case btn_cal://1+2+3=
+                case btn_cal:
                     s=cal.getText().toString();
-                    s=addNum(s,opList.get(opList.size()-1));
+                    s=addNum(s);
                     numList.add(s);
-                    textAdd("=");//1+2+3+4+5
+                    textAdd("=");
                     double sum=Integer.parseInt(numList.get(0));
-                    for(int i=0; i<opList.size(); i++)//1+2+3+4+5
+                    for(int i=0; i<opList.size(); i++)
                     {
                         switch(opList.get(i)){
                             case "+":
@@ -151,7 +157,15 @@ public class activity_calculator extends AppCompatActivity {
                                 break;
                         }
                     }
-                    ((TextView)findViewById(R.id.txt_result)).setText(sum+"");
+                    if((int)sum==sum)
+                    {
+                        ((TextView)findViewById(R.id.txt_result)).setText((int)sum+"");
+                    }
+                    else
+                    {
+                        ((TextView)findViewById(R.id.txt_result)).setText(sum+"");
+                    }
+                    cal.setText("");
                     opList.clear();
                     numList.clear();
 
@@ -162,16 +176,31 @@ public class activity_calculator extends AppCompatActivity {
     {
         cal.setText(cal.getText().toString() + num);
     }
-    public String addNum(String s,String op)
+    public String addNum(String s)
     {
-        int index = s.indexOf(op);//3+5+6
+        int indexp = s.lastIndexOf("+");
+        int indexm = s.lastIndexOf("-");
+        int indexs = s.lastIndexOf("*");
+        int indexd = s.lastIndexOf("/");
+        int []indexArray = {indexp, indexm, indexs, indexd};
+        for(int i=0; i<3; i++)
+        {
+            if(indexArray[i]>indexArray[i+1])
+            {
+                int temp = indexArray[i+1];
+                indexArray[i+1] = indexArray[i];
+                indexArray[i] = temp;
+            }
+        }
+        int index = indexArray[3];
         if(index==-1)
         {
             return s;
         }
         else {
-            String numString = s.substring(index);
+            String numString = s.substring(index+1);
             return numString;
         }
     }
+
 }
