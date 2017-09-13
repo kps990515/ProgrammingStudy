@@ -26,9 +26,9 @@ import static org.andriodtown.basiclayout.R.id.btn_zero;
 
 public class activity_calculator extends AppCompatActivity {
     private TextView cal;
-    private int sum;
     private ArrayList <String> numList = new ArrayList<>();
     private ArrayList <String> opList = new ArrayList<>();
+    private ArrayList <String> stringList = new ArrayList<>();
     String s;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,54 +76,38 @@ public class activity_calculator extends AppCompatActivity {
                 case btn_nine:  textAdd("9");   break;
                 case btn_zero:  textAdd("0");   break;
                 case btn_plus://321+543+63
-                    s=cal.getText().toString();
-                    s=addNum(s);
-                    numList.add(s);
-                    textAdd("+");
-                    opList.add("+");
-                    break;
+                    s=cal.getText().toString(); s=addNum(s);    stringList.add(s);    numList.add(s); textAdd("+");   opList.add("+");    break;
                 case btn_minus:
-                    s=cal.getText().toString();
-                    s=addNum(s);
-                    numList.add(s);
-                    textAdd("-");
-                    opList.add("-");
-                    break;
+                    s=cal.getText().toString(); s=addNum(s);    stringList.add(s);    numList.add(s); textAdd("-");   opList.add("-");    break;
                 case btn_divide:
-                    s=cal.getText().toString();
-                    s=addNum(s);
-                    numList.add(s);
-                    textAdd("/");
-                    opList.add("/");
-                    break;
+                    s=cal.getText().toString(); s=addNum(s);    stringList.add(s);    numList.add(s); textAdd("/");   opList.add("/");    break;
                 case btn_multi:
-                    s=cal.getText().toString();
-                    s=addNum(s);
-                    numList.add(s);
-                    textAdd("*");
-                    opList.add("*");
-                    break;
+                    s=cal.getText().toString(); s=addNum(s);    stringList.add(s);    numList.add(s); textAdd("*");   opList.add("*");    break;
                 case btn_clear:
-                    cal.setText("");
-                    opList.clear();
-                    numList.clear();
-                    ((TextView)findViewById(R.id.txt_result)).setText("");
-                    break;
+                    cal.setText("");    opList.clear(); numList.clear();    ((TextView)findViewById(R.id.txt_result)).setText("");  break;
                 case btn_cal:
                     s=cal.getText().toString();
                     s=addNum(s);
                     numList.add(s);
                     textAdd("=");
-                    sort();
-                    double sum=Integer.parseInt(numList.get(0));
+                    if(opList.size()!=1) {
+                        sort();
+                    }
+                    double sum=Double.parseDouble(numList.get(0));
                     for(int i=0; i<opList.size(); i++)
                     {
                         switch(opList.get(i)){
                             case "+":
-                                sum += Integer.parseInt(numList.get(i+1));
+                                sum += Double.parseDouble(numList.get(i+1));
                                 break;
                             case "-":
-                                sum -= Integer.parseInt(numList.get(i+1));
+                                sum -= Double.parseDouble(numList.get(i+1));
+                                break;
+                            case "*":
+                                sum *= Double.parseDouble(numList.get(i+1));
+                                break;
+                            case "/":
+                                sum /= Double.parseDouble(numList.get(i+1));
                                 break;
                         }
                     }
@@ -143,8 +127,18 @@ public class activity_calculator extends AppCompatActivity {
         }
     };
     private void textAdd(String num)
-    {
-        cal.setText(cal.getText().toString() + num);
+    { //300+00003+
+        s=cal.getText().toString();//s=200+03
+        s=addNum(s);//s=03
+        if(s.indexOf("0")==0)
+        {
+            String temp = cal.getText().toString();//temp = 200+03
+            cal.setText(temp.substring(0,temp.length()-1)+num);//length=5
+        }
+        else
+        {
+            cal.setText(cal.getText().toString() + num);
+        }
     }
     public String addNum(String s)
     {
@@ -172,25 +166,34 @@ public class activity_calculator extends AppCompatActivity {
             return numString;
         }
     }
-    //8-2/2+3*5  [8,2,2,3,5]  [- / + * ] [8 - 2 / 2 + 3 * 5 ] [8 / 2 - 4 + 5 *2 ]
+
     public void sort()
     {
-        int count=0; // 6+3*2  [6 3 2] [+ *]
+        int count=0;
         int length=opList.size();
-        for(int j=0; j<length; j++)
+        for(int j=0; j<length; j++)// 6 + 3 * 2 / 2 [ 6 3 2 2 ] [ + * / ]
         {
-                if(j-count<opList.size()) {
+                if(j-count<opList.size()) { // [ 6 6 2 ] [+ / ]
                     String s = opList.get(j-count);
-                    if (s.equals("/")) //[8,2,2,3,5]  [- / + * ]  i=1 count=0 -> [8,1,3,5] count=1 [- + *]
+                    if (s.equals("/"))
                     {
-                        numList.set(j-count, ((double)Integer.parseInt(numList.get(j - count)) / (double)Integer.parseInt(numList.get(j + 1 - count))) + "");
+                        if(count+1==length)
+                        {
+                            break;
+                        }
+                        numList.set(j-count,Double.toString(Double.parseDouble(numList.get(j - count)) / Double.parseDouble(numList.get(j + 1 - count))));
                         numList.remove(j + 1 - count);
                         opList.remove(j - count);
                         count++;
-                    } // [8,1,3,5] count=1 [- + *] i=3
+
+                    }
                     if (s.equals("*"))
                     {
-                        numList.set(j-count, ((double) Integer.parseInt(numList.get(j - count)) * (double) Integer.parseInt(numList.get(j + 1 - count))) + "");
+                        if(count+1==length)
+                        {
+                            break;
+                        }
+                        numList.set(j-count, Double.toString(Double.parseDouble(numList.get(j - count)) * Double.parseDouble(numList.get(j + 1 - count))));
                         numList.remove(j + 1 - count);
                         opList.remove(j - count);
                         count++;
