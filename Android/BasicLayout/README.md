@@ -3,7 +3,7 @@
 ## 레이아웃
 
 ### 1. Linear Layout
-![예시](https://github.com/kps990515/ProgrammingStudy/blob/master/Android/BasicLayout/linear.png)
+<img src="https://github.com/kps990515/ProgrammingStudy/blob/master/Android/BasicLayout/linear.png" width=40%>
 - Horizontal(수평) & Vertical(수직)이 있다
 - 한 layout안에 여러 layout을 넣어 화면을 구성한다
 
