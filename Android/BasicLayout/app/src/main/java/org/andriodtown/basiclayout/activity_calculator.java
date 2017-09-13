@@ -250,7 +250,6 @@ public class activity_calculator extends AppCompatActivity  {
             opList.remove(")");
             // 괄호 제거 종료
         }
-
     }
     // 분리된 list에서 * / 먼저 계산해주기
     public void checksort() {
