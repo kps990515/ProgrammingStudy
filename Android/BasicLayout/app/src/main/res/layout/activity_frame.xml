@@ -23,4 +23,24 @@
         android:layout_margin="10dp"
         android:text="Button" />
 
+    <Button
+        android:id="@+id/button13"
+        android:layout_width="212dp"
+        android:layout_height="218dp"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/button14"
+        android:layout_width="170dp"
+        android:layout_height="168dp"
+        android:background="@android:color/holo_blue_bright"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/button15"
+        android:layout_width="146dp"
+        android:layout_height="77dp"
+        android:background="@color/colorAccent"
+        android:text="Button" />
+
 </FrameLayout>
