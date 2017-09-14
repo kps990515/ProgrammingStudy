@@ -2,7 +2,7 @@
 
 ### 1. [레이아웃, 계산기](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/BasicLayout)
 
-### 2. [기초 애니메이션](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/Animation)
+### 2. [기초 애니메이션&애니메이터](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/Animation)
 
 ### 3. [4개버튼 날아가기 & 원상복귀](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/Rotating)
 

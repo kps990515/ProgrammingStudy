@@ -1,109 +1,65 @@
-# 기초 애니메이션
+# 애니메이터 완성
 
-## [이동을 애니메이터로 구현](https://github.com/kps990515/ProgrammingStudy/blob/master/Android/Animation/app/src/main/java/org/andriodtown/animation/PropAniActivity.java)
+![예시](https://github.com/kps990515/ProgrammingStudy/blob/master/Android/Animation/%EC%98%88%EC%8B%9C2.png)
 
-## [애니메이터완성]()
-
-### 메인
-![예시](https://github.com/kps990515/ProgrammingStudy/blob/master/Android/Animation/%EC%98%88%EC%8B%9C.png)
-
-#### 선언 파트
-```java
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    //버튼선언
-    Button btnMove;
-    Button btnRotate;
-    Button btnScale;
-    Button btnAlpha;
-    Button btnObject;
-```
-
-#### onCreate
-```java
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        initView();
-        initListener();
-    }
-    //버튼 id부여
-    private void initView()
-    {
-        btnMove = (Button) findViewById(R.id.btnMove);
-        btnRotate = (Button) findViewById(R.id.btnRotate);
-        btnScale = (Button) findViewById(R.id.btnScale);
-        btnAlpha = (Button) findViewById(R.id.btnAlpha);
-        btnObject = (Button) findViewById(R.id.btnObject);
-    }
-    //버튼에 listener 인터페이스 설정
-    private void initListener()
-    {
-        btnMove.setOnClickListener(this);
-        btnRotate.setOnClickListener(this);
-        btnScale.setOnClickListener(this);
-        btnAlpha.setOnClickListener(this);
-        btnObject.setOnClickListener(this);
-    }
-```
+### [전체코드](https://github.com/kps990515/ProgrammingStudy/blob/master/Android/Animation/app/src/main/java/org/andriodtown/animation/JoystickActivity.java)
 
 #### onClick
 ```java
-    //버튼 분기처리
+    int playerX=0;
+    int playerY=0;
     @Override
-    public void onClick(View view) {
-        switch(view.getId()){
-            case R.id.btnMove: move(); break;
-            case R.id.btnRotate: rotate(); break;
-            case R.id.btnScale: scale(); break;
-            case R.id.btnAlpha: alpha(); break;
-            case R.id.btnObject:
-                // 화면 이동
-                Intent intent = new Intent(this, PropAniActivity.class);
-                startActivity(intent);
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.btnleft: left(); break;
+            case R.id.btnright: right(); break;
+            case R.id.btnup: up(); break;
+            case R.id.btndown: down(); break;
         }
     }
 ```
 
-### 애니메이션 실행 함수
-
-#### move
+#### 함수들
+- 방향키를 누르면 그쪽 방향으로 이동
 ```java
-    // 버튼에서 호출되는 함수
-    public void move()
-    {   // View 애니메이션 실행하기
-        // 1. 애니메이션 xml 정의
-        // 2. AnimationUtil로 정의된 애니메이션을 로드
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.move);
-        // 3. 로드된 애니메이션을 실제 위젯에 적용
-        btnObject.startAnimation(animation);
+    private void left()
+    {
+        playerX-=100;
+        move();
+    }
+    private void right()
+    {
+        playerX+=100;
+        move();
+    }
+    private void up()
+    {
+        playerY-=100;
+        move();
+    }
+    private void down()
+    {
+        playerY+=100;
+        move();
     }
 ```
 
-#### rotate
+### 애니메이터 선언
+- 애니메이터는 굳이 xml로 분리안시켜도 된다
+- 위에서 받아온 playerY, playerX만큼 이동시킨다
 ```java
-    public void rotate()
+    private void move()
     {
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.rotate);
-        btnObject.startAnimation(animation);
-    }
-```
-
-#### scale
-```java
-    public void scale()
-    {
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.scale);
-        btnObject.startAnimation(animation);
-    }
-```
-
-#### alpha
-```java
-    public void alpha()
-    {
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.alpha);
-        btnObject.startAnimation(animation);
+        ObjectAnimator aniY = ObjectAnimator.ofFloat(
+                btnplayer, "translationY", playerY
+        );
+        ObjectAnimator aniX = ObjectAnimator.ofFloat(
+                btnplayer, "translationX", playerX
+        );
+        AnimatorSet aniset = new AnimatorSet();
+        // set을 만들어서 두개의 애니메이터 동시 시작
+        aniset.playTogether(aniY, aniX);
+        aniset.start();
     }
 }
 ```
