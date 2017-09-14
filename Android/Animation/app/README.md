@@ -1,4 +1,4 @@
-# 애니메이터 완성
+# 애니메이터로 방향키
 
 ![예시](https://github.com/kps990515/ProgrammingStudy/blob/master/Android/Animation/%EC%98%88%EC%8B%9C2.png)
 
