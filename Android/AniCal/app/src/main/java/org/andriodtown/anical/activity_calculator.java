@@ -1,4 +1,4 @@
-package org.andriodtown.basiclayout;
+package org.andriodtown.anical;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
