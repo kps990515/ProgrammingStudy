@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class activity_calculator extends AppCompatActivity implements View.OnCli
     private ArrayList<String> firstOpList = new ArrayList<>();  // 괄호에 묶인 연산자를 저장하는 list
     String s;
     int start;
+    private LinearLayout parent;
     private Button btn_one;
     private Button btn_two;
     private Button btn_three;
@@ -99,46 +101,35 @@ public class activity_calculator extends AppCompatActivity implements View.OnCli
         switch (v.getId()) {
             case R.id.btn_one:
                 textAdd("1");
-                effect(btn_one);
                 break;
             case R.id.btn_two:
                 textAdd("2");
-                effect(btn_two);
                 break;
             case R.id.btn_three:
                 textAdd("3");
-                effect(btn_three);
                 break;
             case R.id.btn_four:
                 textAdd("4");
-                effect(btn_four);
                 break;
             case R.id.btn_five:
                 textAdd("5");
-                effect(btn_five);
                 break;
             case R.id.btn_six:
                 textAdd("6");
-                effect(btn_six);
                 break;
             case R.id.btn_seven:
                 textAdd("7");
-                effect(btn_seven);
                 break;
             case R.id.btn_eight:
                 textAdd("8");
-                effect(btn_eight);
                 break;
             case R.id.btn_nine:
                 textAdd("9");
-                effect(btn_nine);
                 break;
             case R.id.btn_zero:
                 textAdd("0");
-                effect(btn_zero);
                 break;
             case R.id.btn_plus:
-                effect(btn_plus);
                 s = cal.getText().toString();
                 s = addNum(s);
                 exist(s);
@@ -146,7 +137,6 @@ public class activity_calculator extends AppCompatActivity implements View.OnCli
                 opList.add("+");
                 break;
             case R.id.btn_minus:
-                effect(btn_minus);
                 s = cal.getText().toString();
                 s = addNum(s);
                 exist(s);
@@ -154,7 +144,6 @@ public class activity_calculator extends AppCompatActivity implements View.OnCli
                 opList.add("-");
                 break;
             case R.id.btn_divide:
-                effect(btn_divide);
                 s = cal.getText().toString();
                 s = addNum(s);
                 exist(s);
@@ -162,7 +151,6 @@ public class activity_calculator extends AppCompatActivity implements View.OnCli
                 opList.add("/");
                 break;
             case R.id.btn_multi:
-                effect(btn_multi);
                 s = cal.getText().toString();
                 s = addNum(s);
                 exist(s);
@@ -170,7 +158,6 @@ public class activity_calculator extends AppCompatActivity implements View.OnCli
                 opList.add("*");
                 break;
             case R.id.btn_clear:
-                effect(btn_clear);
                 cal.setText("");
                 opList.clear();
                 numList.clear();
@@ -179,20 +166,17 @@ public class activity_calculator extends AppCompatActivity implements View.OnCli
                 ((TextView) findViewById(R.id.txt_result)).setText("");
                 break;
             case R.id.btn_dot:
-                effect(btn_dot);
                 s = cal.getText().toString();
                 s = addNum(s);
                 textAdd(".");
                 opList.add(".");
                 break;
             case R.id.btn_left:
-                effect(btn_left);
                 s = cal.getText().toString();
                 textAdd("(");
                 opList.add("(");
                 break;
             case R.id.btn_right:
-                effect(btn_right);
                 s = cal.getText().toString();
                 s = addNum(s);
                 exist(s);
@@ -200,7 +184,6 @@ public class activity_calculator extends AppCompatActivity implements View.OnCli
                 opList.add(")");
                 break;
             case R.id.btn_cal:
-                effect(btn_cal);
                 s = cal.getText().toString();
                 s = addNum(s);
                 numList.add(s);
@@ -269,6 +252,11 @@ public class activity_calculator extends AppCompatActivity implements View.OnCli
                 firstNumList.clear();
                 firstOpList.clear();
         }
+    }
+
+    public void effect()
+    {
+
     }
 
     //계산식에 숫자,연산자 받아오는 함수
