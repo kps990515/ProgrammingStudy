@@ -1,196 +1,107 @@
-# Basic Widget
+# 다른 레이아웃에 버튼 날라가게 하기
+![예시](https://github.com/kps990515/ProgrammingStudy/blob/master/Android/LinearLocation/app/%EB%82%A0%EB%9D%BC%EA%B0%80%EA%B8%B0.png)
+
+- 상위 레이아웃은 ConstraintLayout 여기에 날라갈 위치 설정
+- 날라갈 버튼들의 위치는 하위 LinearLayout에 설정
+- 날라갈 버튼을 누르면 dummy Button이 버튼 값의 속성을 복사 &   
+  클릭한 버튼의 위치에 생성되며(단 상위레이아웃에 생성) 목표위치로 날라간다
 
 ```java
-package org.andriodtown.basicwidget;
+public class Main2Activity extends AppCompatActivity implements View.OnClickListener{
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.ProgressBar;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.RatingBar;
-import android.widget.SeekBar;
-import android.widget.Switch;
-import android.widget.TextView;
-import android.widget.ToggleButton;
-
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity{
-
-    TextView textResult;
-    ToggleButton toggleButton;
-    CheckBox checkDog;
-    CheckBox checkPig;
-    CheckBox checkCow;
-    RadioGroup radioGroup;
-    RadioButton radioRed;
-    RadioButton radioBlue;
-    RadioButton radioGreen;
-    RadioButton radioSpinner;
-    ProgressBar progressBar;
-    Switch mSwitch;
-    SeekBar seekBar;
-    TextView textSeekBarResult;
-    RatingBar ratingBar;
-    TextView rate;
+    private ConstraintLayout stage;
+    private Button btnGoal;
+    private Button btn1;
+    private Button btn2;
+    private Button btn3;
+    private Button btn4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main2);
         initView();
+        initListener();
+    }
+    @Override
+    public void onClick(View view) {
+        // 클릭된 버튼을 사용하기 위해 시스템에서 넘겨받은 뷰를
+        // 원래의 버튼으로 캐스팅해둔다.
+        if(view instanceof Button){ // view 변수가 Button 클래스의 인스턴스인지를 체크
+            Button original = (Button) view;
 
-        toggleButton.setOnCheckedChangeListener(checkedChangeListener);
-        mSwitch.setOnCheckedChangeListener(checkedChangeListener);
+            // 실제 날아갈 더미를 생성해서 상위 레이아웃에 담은후에 처리한다
+            final Button dummy = new Button(this);
+            // 생성된 더미에 클릭한 버튼의 속성값을 복사 적용
+            dummy.setText(original.getText().toString());
+            dummy.setWidth(original.getWidth());
+            dummy.setHeight(original.getHeight());
+            dummy.setBackgroundColor(Color.RED);
 
-        checkDog.setOnCheckedChangeListener(checkboxListner);
-        checkPig.setOnCheckedChangeListener(checkboxListner);
-        checkCow.setOnCheckedChangeListener(checkboxListner);
+            // 부모 레이아웃을 가져와서 원래 클래스로 캐스팅
+            LinearLayout parent = (LinearLayout) original.getParent();
 
-        radioGroup.setOnCheckedChangeListener(radioListener);
+            // 부모 레이아웃의 위치값과 원래 버튼의 위치값을 더해서 좌표를 정한다.
+            dummy.setX( original.getX() + parent.getX());
+            dummy.setY( original.getY() + parent.getY());
 
-        ratingBar.setOnRatingBarChangeListener(ratingbarListener);
+            // 더미를 상위 레이아웃에 담는다
+            stage.addView(dummy);
+            int duration = 1000;
+            ObjectAnimator aniY = ObjectAnimator.ofFloat(
+                    dummy, "y", btnGoal.getY()
+            );
+            ObjectAnimator aniX = ObjectAnimator.ofFloat(
+                    dummy, "x", btnGoal.getX()
+            );
+            ObjectAnimator aniR = ObjectAnimator.ofFloat(
+                    dummy, "rotation", 360*duration
+            );
+            AnimatorSet aniSet = new AnimatorSet();
+            aniSet.setInterpolator(new AccelerateDecelerateInterpolator());
+            aniSet.playTogether(aniY, aniX, aniR);
+            aniSet.setDuration(duration);
+            // 애니메이션 종료를 체크하기 위한 리스너를 달아준다.
+            aniSet.addListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animator) {
 
-        progressBar.setVisibility(View.INVISIBLE);
-        // INVISIBLE -- 화면에 안보이는데 자리는 차지하고 있다
-        // VISIBLE   -- 현재 화면에 보이는 상태
-        // GONE      -- 화면에서 사라진 상태
+                }
 
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                textSeekBarResult.setText(progress+"");
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    stage.removeView(dummy);
+                }
 
-            }
+                @Override
+                public void onAnimationCancel(Animator animator) {
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+                }
 
-            }
-        });
+                @Override
+                public void onAnimationRepeat(Animator animator) {
 
+                }
+            });
+
+
+            aniSet.start();
+        }
     }
 
     private void initView() {
-
-        textResult = (TextView) findViewById(R.id.textResult);
-        toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
-        checkDog = (CheckBox) findViewById(R.id.checkDog);
-        checkPig = (CheckBox) findViewById(R.id.checkPig);
-        checkCow = (CheckBox) findViewById(R.id.checkCow);
-        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
-        radioRed = (RadioButton) findViewById(R.id.radioRed);
-        radioBlue = (RadioButton) findViewById(R.id.radioBlue);
-        radioGreen = (RadioButton) findViewById(R.id.radioGreen);
-        radioSpinner = (RadioButton) findViewById(R.id.radioSpinner);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        mSwitch = (Switch) findViewById(R.id.mSwitch);
-        seekBar = (SeekBar) findViewById(R.id.seekBar);
-        textSeekBarResult = (TextView) findViewById(R.id.textSeekBarResult);
-        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-        rate = (TextView) findViewById(R.id.rate);
+        stage = (ConstraintLayout) findViewById(R.id.stage);
+        btnGoal = (Button) findViewById(R.id.btnGoal);
+        btn1 = (Button) findViewById(R.id.btn1);
+        btn2 = (Button) findViewById(R.id.btn2);
+        btn3 = (Button) findViewById(R.id.btn3);
+        btn4 = (Button) findViewById(R.id.btn4);
     }
-    // 레이팅바 리스너
-    RatingBar.OnRatingBarChangeListener ratingbarListener = new RatingBar.OnRatingBarChangeListener() {
-        @Override
-        public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-            rate.setText(String.valueOf(rating));
-        }
-    };
-
-    // 라디오그룹 리스너
-    RadioGroup.OnCheckedChangeListener radioListener = new RadioGroup.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(RadioGroup radioGroup, @IdRes int radio_id) {
-            switch(radio_id){
-                case R.id.radioRed:
-                    textResult.setText("빨간불이 켜졌습니다.");
-                    break;
-                case R.id.radioGreen:
-                    textResult.setText("녹색불이 켜졌습니다.");
-                    break;
-                case R.id.radioBlue:
-                    textResult.setText("파란불이 켜졌습니다.");
-                    break;
-                case R.id.radioSpinner:
-                    Intent intent = new Intent(getApplicationContext(), SpinnerActivity.class);
-                    startActivity(intent);
-            }
-        }
-    };
-
-    // 체크박스 리스너
-    ArrayList<String> checkedList = new ArrayList<>();
-    CompoundButton.OnCheckedChangeListener checkboxListner
-            = new CompoundButton.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-            // 체크박스 처리
-            switch(compoundButton.getId()){
-                case R.id.checkDog:
-                    if(b){
-                        checkedList.add("개");
-                    }else{
-                        checkedList.remove("개");
-                    }
-                    break;
-                case R.id.checkPig:
-                    if(b){
-                        checkedList.add("돼지");
-                    }else{
-                        checkedList.remove("돼지");
-                    }
-                    break;
-                case R.id.checkCow:
-                    if(b){
-                        checkedList.add("소");
-                    }else{
-                        checkedList.remove("소");
-                    }
-                    break;
-            }
-
-            String checkedResult = "";
-            for(String item : checkedList){
-                checkedResult += item + " ";
-            }
-
-            textResult.setText(checkedResult + "(이)가 체크되었습니다.");
-        }
-    };
-
-    CompoundButton.OnCheckedChangeListener checkedChangeListener
-            = new CompoundButton.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(CompoundButton compoundButton, boolean check) {
-            // 토글, 스위치 처리
-            switch(compoundButton.getId()){
-                case R.id.toggleButton:
-                    if(check){
-                        textResult.setText("토글버튼이 켜졌습니다");
-                    }else{
-                        textResult.setText("토글버튼이 꺼졌습니다");
-                    }
-                    break;
-                case R.id.mSwitch:
-                    if(check){
-                        progressBar.setVisibility(View.VISIBLE);
-                    }else{
-                        progressBar.setVisibility(View.INVISIBLE);
-                    }
-                    break;
-            }
-        }
-    };
-
+    private void initListener(){
+        btn1.setOnClickListener(this);
+        btn2.setOnClickListener(this);
+        btn3.setOnClickListener(this);
+        btn4.setOnClickListener(this);
+    }
 }
 ```

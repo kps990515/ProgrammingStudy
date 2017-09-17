@@ -8,6 +8,6 @@
 
 ### 4. [계산기 애니메이션](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/AniCal)
 
-### 5. [Linearlayout & 버튼날라가기] ](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/LinearLocation)
+### 5. [Linearlayout & 버튼날라가기](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/LinearLocation)
 
 ### 6. [위젯](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/BasicWidget)

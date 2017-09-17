@@ -1,4 +1,8 @@
 # 1. LinearLayout버튼 겹치게하기
+
+### 2. [다른 레이아웃에 버튼 날라가게 하기](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/LinearLocation/app)
+
+![예시](https://github.com/kps990515/ProgrammingStudy/blob/master/Android/LinearLocation/%EA%B2%B9%EC%B9%98%EA%B8%B0.png)
 - LayoutParams : 원래 레이아웃은 xml에서 하지만 이걸 사용하면 activty에서도 레이아웃 설정가능
 
 - Onclick함수에서 instance of Button  

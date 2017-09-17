@@ -1,4 +1,9 @@
 # Spinner
+![예시](https://github.com/kps990515/ProgrammingStudy/blob/master/Android/BasicWidget/app/%EC%8A%A4%ED%94%BC%EB%84%88.png)
+
+- spinner는 어뎁터가 필요하다
+- 데이터 -> 어뎁터 -> 스피너
+- 데이터와 스피터가 독립적이 된다
 
 ```java
 package org.andriodtown.basicwidget;
@@ -39,7 +44,9 @@ public class SpinnerActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+              //해당 포지션의 데이터를 selectedValue에 담기
                 String selectedValue = data[position];
+                // txtview에 데이터 넣기
                 txtResult.setText(selectedValue);
             }
 
