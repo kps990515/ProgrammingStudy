@@ -6,6 +6,8 @@
 
 - 위젯 마다 설정해야되는 Listener 종류가 다르다
 
+### 메인부분
+
 ```java
 public class MainActivity extends AppCompatActivity{
 
@@ -47,7 +49,10 @@ public class MainActivity extends AppCompatActivity{
         // INVISIBLE -- 화면에 안보이는데 자리는 차지하고 있다
         // VISIBLE   -- 현재 화면에 보이는 상태
         // GONE      -- 화면에서 사라진 상태
+```
 
+### SeekBar
+```java
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             // seekBar의 상태가 바뀌었을 때
@@ -67,27 +72,11 @@ public class MainActivity extends AppCompatActivity{
         });
 
     }
+```
 
-    private void initView() {
+### 레이팅바 리스너
 
-        textResult = (TextView) findViewById(R.id.textResult);
-        toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
-        checkDog = (CheckBox) findViewById(R.id.checkDog);
-        checkPig = (CheckBox) findViewById(R.id.checkPig);
-        checkCow = (CheckBox) findViewById(R.id.checkCow);
-        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
-        radioRed = (RadioButton) findViewById(R.id.radioRed);
-        radioBlue = (RadioButton) findViewById(R.id.radioBlue);
-        radioGreen = (RadioButton) findViewById(R.id.radioGreen);
-        radioSpinner = (RadioButton) findViewById(R.id.radioSpinner);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        mSwitch = (Switch) findViewById(R.id.mSwitch);
-        seekBar = (SeekBar) findViewById(R.id.seekBar);
-        textSeekBarResult = (TextView) findViewById(R.id.textSeekBarResult);
-        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-        rate = (TextView) findViewById(R.id.rate);
-    }
-    // 레이팅바 리스너
+```java
     RatingBar.OnRatingBarChangeListener ratingbarListener = new RatingBar.OnRatingBarChangeListener() {
         @Override
         // 레이팅바의 점수만큼을 출력
@@ -95,8 +84,11 @@ public class MainActivity extends AppCompatActivity{
             rate.setText(String.valueOf(rating));
         }
     };
+```
 
-    // 라디오그룹 리스너
+### 라디오그룹 리스너
+
+```java
     RadioGroup.OnCheckedChangeListener radioListener = new RadioGroup.OnCheckedChangeListener() {
         @Override
         //클릭된 버튼에 따라 출력 다르게
@@ -117,8 +109,13 @@ public class MainActivity extends AppCompatActivity{
             }
         }
     };
+```
+### 체크박스 리스너
 
-    // 체크박스 리스너
+- 체크박스를 누르면 해당 정보가 list에 저장
+- 출력시 list에 있는 정보 불러옴
+
+```java
     ArrayList<String> checkedList = new ArrayList<>();
     CompoundButton.OnCheckedChangeListener checkboxListner
             = new CompoundButton.OnCheckedChangeListener() {
@@ -158,7 +155,10 @@ public class MainActivity extends AppCompatActivity{
             textResult.setText(checkedResult + "(이)가 체크되었습니다.");
         }
     };
+```
 
+### 토글, 스위치 버튼
+```java
     CompoundButton.OnCheckedChangeListener checkedChangeListener
             = new CompoundButton.OnCheckedChangeListener() {
         @Override

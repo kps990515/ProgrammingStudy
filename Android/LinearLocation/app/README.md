@@ -6,6 +6,8 @@
 - 날라갈 버튼을 누르면 dummy Button이 버튼 값의 속성을 복사 &   
   클릭한 버튼의 위치에 생성되며(단 상위레이아웃에 생성) 목표위치로 날라간다
 
+### 메인부분
+
 ```java
 public class Main2Activity extends AppCompatActivity implements View.OnClickListener{
 
@@ -23,13 +25,19 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
         initView();
         initListener();
     }
+```
+
+### onClick
+```java
     @Override
     public void onClick(View view) {
         // 클릭된 버튼을 사용하기 위해 시스템에서 넘겨받은 뷰를
         // 원래의 버튼으로 캐스팅해둔다.
         if(view instanceof Button){ // view 변수가 Button 클래스의 인스턴스인지를 체크
             Button original = (Button) view;
-
+```
+#### onClick(dummy부분)
+```java
             // 실제 날아갈 더미를 생성해서 상위 레이아웃에 담은후에 처리한다
             final Button dummy = new Button(this);
             // 생성된 더미에 클릭한 버튼의 속성값을 복사 적용
@@ -47,6 +55,10 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
 
             // 더미를 상위 레이아웃에 담는다
             stage.addView(dummy);
+```
+
+#### 애니메이터 부분
+```java
             int duration = 1000;
             ObjectAnimator aniY = ObjectAnimator.ofFloat(
                     dummy, "y", btnGoal.getY()
@@ -88,20 +100,4 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
             aniSet.start();
         }
     }
-
-    private void initView() {
-        stage = (ConstraintLayout) findViewById(R.id.stage);
-        btnGoal = (Button) findViewById(R.id.btnGoal);
-        btn1 = (Button) findViewById(R.id.btn1);
-        btn2 = (Button) findViewById(R.id.btn2);
-        btn3 = (Button) findViewById(R.id.btn3);
-        btn4 = (Button) findViewById(R.id.btn4);
-    }
-    private void initListener(){
-        btn1.setOnClickListener(this);
-        btn2.setOnClickListener(this);
-        btn3.setOnClickListener(this);
-        btn4.setOnClickListener(this);
-    }
-}
 ```
