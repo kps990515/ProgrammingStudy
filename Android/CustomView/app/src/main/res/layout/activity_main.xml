@@ -2,37 +2,42 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/stage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="org.andriodtown.customview.MainActivity">
 
+    <org.andriodtown.customview.CustomView
+        android:layout_width="300dp"
+        android:layout_height="150dp" />
+
     // attrs에서 만든 AniButton 가져오기
     // xmlns 가져온 이유는 custom이라는 이름을 만들기 위해
+
     <org.andriodtown.customview.AniButton
         xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/aniButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello Custom Widget"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="Hello Custom Widget"
         custom:animation="true"
-        android:id="@+id/aniButton2"
         custom:layout_constraintHorizontal_bias="0.502" />
     //custom이라는 앱에 animation을 true로 설정해서 내가 만든 것 가져오기
 
-    <org.andriodtown.customview.AniButton
-        xmlns:custom="http://schemas.android.com/apk/res-auto"
+    <org.andriodtown.customview.AniButton xmlns:custom="http://schemas.android.com/apk/res-auto"
         android:id="@+id/aniButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello Custom Widget"
-        custom:animation="false"
+        android:layout_marginTop="8dp"
+        android:text="Go to Draw"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/aniButton2" />
+        app:layout_constraintTop_toBottomOf="@+id/aniButton2"
+        custom:animation="false" />
 </android.support.constraint.ConstraintLayout>
