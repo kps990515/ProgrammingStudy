@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AniButton"> <!--재정의할 객체이름-->
+        //format 1. string(직접 입력) 2. reference(다른 value에서 가져옴)
+        <attr name="animation" format="string"/>
+        <attr name="delimeter" format="string"/>
+    </declare-styleable>
+</resources>
