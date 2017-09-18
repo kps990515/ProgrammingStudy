@@ -16,6 +16,7 @@
 - DrawActivity에서는 각 버튼들의 기능을 만든다
 - [DrawView](https://github.com/kps990515/ProgrammingStudy/blob/master/Android/CustomView/app/src/main/java/org/andriodtown/customview/DrawView.java) 에서는 터치움직임을 배열에 저장해서 출력하는 방식(느림)
 - FastDraw는 path를 사용해서 끊김없이 사용가능
+- 굵기, 색상 변경 가능한 그림판
 
 
 ### DrawActivity(Main)
