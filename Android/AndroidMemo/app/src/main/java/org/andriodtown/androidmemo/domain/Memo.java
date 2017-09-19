@@ -9,5 +9,5 @@ public class Memo {
     String title;
     String author;
     String content;
-    long datetime;
+    String datetime;
 }
