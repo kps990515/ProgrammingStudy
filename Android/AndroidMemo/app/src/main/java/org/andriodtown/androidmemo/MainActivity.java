@@ -1,31 +1,24 @@
 package org.andriodtown.androidmemo;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import org.andriodtown.androidmemo.domain.Memo;
+import org.andriodtown.androidmemo.util.FileUtil;
 
-import java.text.SimpleDateFormat;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
-import static android.R.attr.data;
-import static android.os.Build.VERSION_CODES.M;
+public class MainActivity extends AppCompatActivity{
+    private ListView listview;
+    private Button btn_write;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-    ArrayList<Memo> memo = new ArrayList<>();
-    ListView listview;
-    Button btn_write;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,112 +26,78 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         initView();
         initListener();
-
-
-        CustomAdapter adapter = new CustomAdapter(memo,this);
-
-        listview = (ListView)findViewById(R.id.listview);
-        listview.setAdapter(adapter);
+        init();
+        /*
+         내용을 파일에 작성
+         - 파일쓰기
+            내부저장소 - internal : 개별앱만 접근가능, 파일탐색기에서 보이지 않음
+            외부저장소 - external : 모든앱이 접근가능, 권한필요
+         */
     }
 
-    public String getTime(){
-        long now = System.currentTimeMillis();
-        Date date = new Date(now);
-        SimpleDateFormat CurDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분");
-        String strCurDate = CurDateFormat.format(date);
-        return strCurDate;
-    }
-
-    @Override
-    public void onClick(View v) {
-
-    }
-    public void initView(){
+    private void initView(){
         btn_write = (Button)findViewById(R.id.btn_write);
+        listview = (ListView)findViewById(R.id.listview);
     }
-    public void initListener(){
+
+    private static final int WRITE_ACTIVITY = 99;
+    private void initListener(){
         btn_write.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), WriteActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, WriteActivity.class);
+                //startActivity(intent);
+                startActivityForResult(intent, WRITE_ACTIVITY);
             }
         });
     }
 
-    class CustomAdapter extends BaseAdapter{
+    //startActivityForResut를 통해 호출된 액티비티가 종료되는 순간 호출되는 함수
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode){
+            case WRITE_ACTIVITY:
+                if(resultCode == RESULT_OK) {
+                    init();
+                }
+                break;
 
-        ArrayList<Memo> memo = new ArrayList<>();
-
-        Context context;
-
-        public CustomAdapter(ArrayList<Memo> memo, Context context){
-            this.memo=memo;
-            this.context=context;
-        }
-
-        @Override
-        public int getCount() {
-            return memo.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return memo.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View view, ViewGroup parent) {
-            // 레이아웃 inflator로 xml파일을 View객체로 변환
-            // 여기서 null은 뭔가를 눌렀을 때 리스트그룹이 새로 나오는 것이 없어서
-            // null이라서 그냥 전체가 펼쳐짐
-            Holder holder = null;
-            if(view == null) {
-                // 아이템 view를 재 사용하기 위하여 null 체크
-                // 스크롤해서 view하나가 사라지면 새로운 view는 그것을 재사용
-                view = LayoutInflater.from(context).inflate(R.layout.list_item, null);
-
-                // view에 있는 텍스트 내용을 재사용하기 위해 null 체크
-                // 아이템이 최초 호출될 경우 Holder에 위젯들을 담고
-                // 여기서 holder클래스 생성자를 통해 listener까지 붙여줌
-                holder = new Holder(view,memo);
-
-                // 홀더를 view에 붙여놓는다
-                view.setTag(holder);
-            }
-            else{
-                // 이미 view가 있을 경우
-                // view에 붙어있는 홀더를 가져온다
-                holder = (Holder)view.getTag();
-            }
-
-            // 뷰안에 있는 텍스트 위젯에 값을 입력한다
-            holder.texttitle.setText();
-
-            return view;
         }
     }
-    class Holder{
-        TextView texttitle;
-        TextView textno;
-        ArrayList<Memo> memo = new ArrayList<>();
-        public Holder(View view, final ArrayList<Memo> memo){
-            this.memo=memo;
-            texttitle=(TextView)findViewById(R.id.texttitle);
-            textno=(TextView)findViewById(R.id.textno);
-            texttitle.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), DetailActivity.class);
-                    intent.putExtra("memo", String.valueOf(memo.get(Integer.parseInt(textno.getText()+""))));
-                    startActivity(intent);
-                }
-            });
+
+    private ArrayList<Memo> loadData() {
+        // 파일목록 가져오기
+        // 1. 파일이 있는 디렉토리를 가져온다(디렉토리 바뀌면 망함)
+        //String dir_path = getFilesDir().getAbsolutePath();
+        //File file = new File(dir_path);
+        //압축하면
+        /*
+        File files[] = getFilesDir().listFiles();
+
+        ArrayList<String> list = new ArrayList<>();
+        for(File item : files){
+            list.add(item.getName());
         }
+        */
+        ArrayList<Memo> result = new ArrayList<>();
+        //파일목록에서 파일을 하나씩 꺼낸 후
+        // Memo클래스로 전환후 result에 담는다
+        for(File item : getFilesDir().listFiles()){
+            try {
+                String text = FileUtil.read(this, item.getName());
+                Memo memo = new Memo(text);
+                result.add(memo);
+            } catch (Exception e) {
+                Toast.makeText(this, "에러:"+e.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }
+        return result;
+    }
+
+    private void init(){
+        ArrayList<Memo> list = loadData();
+        ListAdapter adapter = new ListAdapter(this, list);
+        listview.setAdapter(adapter);
     }
 }
