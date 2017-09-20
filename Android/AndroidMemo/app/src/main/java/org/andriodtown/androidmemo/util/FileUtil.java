@@ -16,7 +16,6 @@ import static android.content.Context.MODE_PRIVATE;
 public class FileUtil {
 
     public static String read(Context context, String filename) throws IOException{
-        // 원래 이 용도는 아님
         StringBuilder sb = new StringBuilder();
         FileInputStream fis = null;
         BufferedInputStream bis = null;
@@ -36,13 +35,23 @@ public class FileUtil {
             }
         }catch(IOException e){
             throw e;
+        } finally{
+            if(bis!=null){
+                try{
+                    bis.close();
+                }catch (IOException e){
+                    throw e;
+                }
+            }
+            if(fis!=null){
+                try{
+                    fis.close();
+                }catch (IOException e){
+                    throw e;
+                }
+            }
         }
-        try {
-            bis.close();
-            fis.close();
-        }catch(Exception e) {
-            e.printStackTrace();
-        }
+
         return sb.toString();
     }
 
@@ -58,7 +67,7 @@ public class FileUtil {
                 try{
                     fos.close();
                 }catch(IOException e){
-                    e.printStackTrace();
+                    throw e;
                 }
             }
         }

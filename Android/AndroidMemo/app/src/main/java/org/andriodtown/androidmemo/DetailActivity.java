@@ -6,12 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import org.andriodtown.androidmemo.domain.Memo;
+
 public class DetailActivity extends AppCompatActivity {
 
-    TextView txt_titlev;
-    TextView txt_authorv;
-    TextView txt_datetimev;
-    TextView txt_contentv;
+    private TextView txt_titlev;
+    private TextView txt_authorv;
+    private TextView txt_datetimev;
+    private TextView txt_contentv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +22,6 @@ public class DetailActivity extends AppCompatActivity {
 
         initView();
         init();
-
-
 
         findViewById(R.id.btn_backv).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,15 +34,23 @@ public class DetailActivity extends AppCompatActivity {
     public void init(){
         Intent intent = getIntent();
         int position = intent.getIntExtra("position", -1); // 던져주는 값이 이상하면 -1
+
+        /* 이렇게 해도 되지만 static할때보다 메모리가 더 커질수 있다. 복사값이 2개라서
         String title = intent.getStringExtra("title");
         String author = intent.getStringExtra("author");
         String content = intent.getStringExtra("content");
         String datetime = intent.getStringExtra("datetime");
+        */
 
-        txt_titlev.setText(title);
-        txt_authorv.setText(author);
-        txt_contentv.setText(content);
-        txt_datetimev.setText(datetime);
+        // 이렇게 할 때는 문제는 data와 listadapter가 완전히 결합되버린다는 것
+        // 또한 data가 static 선언됨
+        // 그래도 이게 더 효율적
+        Memo memo = ListAdapter.data.get(position);
+
+        txt_titlev.setText(memo.getTitle());
+        txt_authorv.setText(memo.getAuthor());
+        txt_contentv.setText(memo.getContent());
+        txt_datetimev.setText(memo.getDatetime()+"");
     }
 
     public void initView(){

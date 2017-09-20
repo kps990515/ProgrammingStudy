@@ -21,9 +21,11 @@ import static org.andriodtown.androidmemo.R.id.texttitle;
  */
 
 public class ListAdapter extends BaseAdapter{
-    ArrayList<Memo>data;
+    // 이래야 DetailActivity에서 data를 받을 수 있음
+    // data 중복 사용방지
+    public static ArrayList<Memo>data;
     Context context;
-
+    // 생성자
     public ListAdapter(Context context, ArrayList<Memo> data){
         this.data=data;
         this.context=context;
@@ -58,15 +60,18 @@ public class ListAdapter extends BaseAdapter{
         //값을 세팅
         // 1. 컬렉션 구조의 저장소에 객체 단위로 꺼내두는게 편하다
         Memo memo = data.get(position);
-        // 홀더의 위젯에 데이터를 입력
+        // 2. 홀더의 위젯에 데이터를 입력
         holder.setTextno(memo.getNo());
         holder.setTexttitle(memo.getTitle());
         holder.setTextDate(memo.getDatetime());
         holder.setPosition(position);
+        holder.setAuthor(memo.getAuthor());
+        holder.setContent(memo.getContent());
 
         return view;
     }
 }
+
 class Holder{
     private int position;
     private String author;
@@ -110,10 +115,12 @@ class Holder{
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), DetailActivity.class);
                 intent.putExtra("position", position);
+                /*
                 intent.putExtra("title", textTitle.getText());
                 intent.putExtra("author", author);
                 intent.putExtra("content", content);
                 intent.putExtra("datetime", textDate.getText());
+                */
                 v.getContext().startActivity(intent);
             }
         });

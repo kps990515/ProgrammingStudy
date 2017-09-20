@@ -6,17 +6,27 @@ package org.andriodtown.androidmemo.domain;
 
 public class Memo {
 
+    // 이름,제목,날짜 구분하는 구분자
     private static final String DELIMETER = "//";
+
     private int no;
     private String title;
     private String author;
     private String content;
     private long datetime;
 
+    public Memo(){
+
+    }
+
     public Memo(String text){
+        parse(text);
+    }
+
+    public void parse(String text){
         // 문자열을 줄 단위로 분해
-        String lines[] = text.split("");
-        // 문자열을 행(":^:")단위로 분해
+        String lines[] = text.split("\n");
+        // 문자열을 행(DELIMETER)단위로 분해
         for(String line : lines){
             String columns[] = line.split(DELIMETER);
             String key = "";
@@ -46,7 +56,6 @@ public class Memo {
                     break;
                 default:
                     appendContent(value);
-                    break;
             }
         }
     }
@@ -92,6 +101,10 @@ public class Memo {
         this.datetime = datetime;
     }
 
+    public void appendContent(String value){
+        this.content+="\n" +value;
+    }
+
     // memo가져올 때 보기 편하려고
     public String toString(){
         StringBuilder result = new StringBuilder();
@@ -103,12 +116,9 @@ public class Memo {
 
         return result.toString();
     }
+
     // 쓰고 저장할때 Byte[]형식이라
     public byte[] toBytes(){
         return toString().getBytes();
-    }
-
-    public void appendContent(String value){
-        this.content+=content;
     }
 }

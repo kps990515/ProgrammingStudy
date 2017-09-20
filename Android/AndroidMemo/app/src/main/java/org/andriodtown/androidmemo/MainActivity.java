@@ -12,7 +12,6 @@ import org.andriodtown.androidmemo.domain.Memo;
 import org.andriodtown.androidmemo.util.FileUtil;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
@@ -40,30 +39,10 @@ public class MainActivity extends AppCompatActivity{
         listview = (ListView)findViewById(R.id.listview);
     }
 
-    private static final int WRITE_ACTIVITY = 99;
-    private void initListener(){
-        btn_write.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, WriteActivity.class);
-                //startActivity(intent);
-                startActivityForResult(intent, WRITE_ACTIVITY);
-            }
-        });
-    }
-
-    //startActivityForResut를 통해 호출된 액티비티가 종료되는 순간 호출되는 함수
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch(requestCode){
-            case WRITE_ACTIVITY:
-                if(resultCode == RESULT_OK) {
-                    init();
-                }
-                break;
-
-        }
+    private void init(){
+        ArrayList<Memo> list = loadData();
+        ListAdapter adapter = new ListAdapter(this, list);
+        listview.setAdapter(adapter);
     }
 
     private ArrayList<Memo> loadData() {
@@ -95,9 +74,29 @@ public class MainActivity extends AppCompatActivity{
         return result;
     }
 
-    private void init(){
-        ArrayList<Memo> list = loadData();
-        ListAdapter adapter = new ListAdapter(this, list);
-        listview.setAdapter(adapter);
+    private static final int WRITE_ACTIVITY = 99;
+    private void initListener(){
+        btn_write.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, WriteActivity.class);
+                //startActivity(intent);
+                startActivityForResult(intent, WRITE_ACTIVITY);
+            }
+        });
+    }
+
+    //startActivityForResut를 통해 호출된 액티비티가 종료되는 순간 호출되는 함수
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode){
+            case WRITE_ACTIVITY:
+                if(resultCode == RESULT_OK) {
+                    init();
+                }
+                break;
+
+        }
     }
 }

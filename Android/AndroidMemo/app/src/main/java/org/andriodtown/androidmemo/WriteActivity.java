@@ -13,11 +13,11 @@ import org.andriodtown.androidmemo.util.FileUtil;
 import java.io.IOException;
 
 public class WriteActivity extends AppCompatActivity {
-    Button btn_save;
-    EditText edit_title;
-    EditText edit_author;
-    EditText edit_content;
-
+    private Button btn_save;
+    private EditText edit_title;
+    private EditText edit_author;
+    private EditText edit_content;
+    static int count=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,11 +27,12 @@ public class WriteActivity extends AppCompatActivity {
     }
     private Memo getMemo(){
         Memo memo = new Memo();
-        memo.setNo(1);
+        memo.setNo(count);
         memo.setTitle(edit_title.getText().toString());
         memo.setAuthor(edit_author.getText().toString());
         memo.setContent(edit_content.getText().toString());
         memo.setDatetime(System.currentTimeMillis());
+        count++;
         return memo;
     }
     public void write(Memo memo){
