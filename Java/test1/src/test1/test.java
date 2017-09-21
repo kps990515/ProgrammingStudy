@@ -2,67 +2,46 @@ package test1;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
+import java.util.Scanner;
 
 public class test {
 
 	public static void main(String[] args) {
-		int sum=0;
-		String s1 = "aabcc"; 
-		String s2 = "adcaa";
-		String [] array1 = s1.split("");
-		String [] array2 = s2.split("");
-		HashSet <String> set1 = new HashSet<>();
-		HashSet <String> set2 = new HashSet<>();
-		int count=0;
-		for(int i=0; i<array1.length; i++)
-		{
-			set1.add(array1[i]); //abc
+		HashSet<Integer>set = new HashSet<>();
+		Random random = new Random();
+		int [][] array = new int[4][4];
+		int [] temp = new int[10];
+		int [] temp2 = new int[6];
+		for(int i=0; i<10; i++) {
+			temp[i]=random.nextInt(10)+1;
 		}
-    	for(int i=0; i<array2.length; i++)
-		{
-			set2.add(array2[i]); //abc
+		while(set.size()<6) {
+			set.add(random.nextInt(16));
 		}
-		ArrayList <Integer> count1 = new ArrayList<>();
-		ArrayList <Integer> count2 = new ArrayList<>();
-		for(String item : set1)//abc
+		for(int i=0; i<4; i++) 
 		{
-			for(int i=0; i<array2.length; i++)//a-3 //c-1
+			for(int j=0; j<4; j++) 
 			{
-				if(item.equals(array2[i]))
+				array[i][j]=100;
+			}
+		}
+		for(int item : set) {
+			array[item/4][item%4]=0;
+		}
+		int k=0;
+		for(int i=0; i<4; i++) 
+		{
+			for(int j=0; j<4; j++) 
+			{
+				if(array[i][j]==100) 
 				{
-					count++;
+					array[i][j]=temp[k];
+					k++;
 				}
+				System.out.print(array[i][j]+"\t");
 			}
-			count1.add(count);
-			count=0;
+			System.out.print("\n");
 		}
-		for(String item : set2)//adc a-2c-2
-		{
-
-			for(int i=0; i<array1.length; i++)
-			{
-				if(item.equals(array1[i]))
-				{
-					count++;
-				}
-			}
-			count2.add(count);
-			count=0;
-		}
-		for(int i=0; i<count1.size(); i++)
-		{
-			if(count1.get(i)>=count2.get(i))
-			{
-				count1.set(i,count2.get(i));
-			}
-		}
-	    for(int i=0; i<count1.size(); i++)
-			{
-			sum+=count1.get(i);	
-			}
-
-		
-		System.out.println(sum);
 	}
-
 }

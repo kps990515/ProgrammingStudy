@@ -35,6 +35,12 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_list);
         initview();
         initListener();
+        init();
+    }
+
+    MemoDAO dao = null;
+    private void init(){
+        dao = new MemoDAO(this);
     }
 
     @Override
@@ -63,7 +69,6 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
                        " values('"+title+"','"+content+"',datetime('now','localtime')";
 
         // 3. DB에 실행
-        MemoDAO dao = new MemoDAO(this);
         dao.create(query);
 
         // 4. 입력 화면 초기화
@@ -80,7 +85,6 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
     public void read(){
         // 0. 쿼리가 있어야하지만 생략 DAO에 이미 있음
         // 1. DB 실행 후 결과값 받아서 처리
-        MemoDAO dao = new MemoDAO(this);
         ArrayList<Memo> data = dao.read();
         txt_result.setText("");
         for(Memo memo : data){
@@ -103,5 +107,14 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
         btn_read.setOnClickListener(this);
         btn_update.setOnClickListener(this);
         btn_delete.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        // 사용한 Database 클래스는 닫아준다.
+        if(dao != null){
+            dao.close();
+        }
+        super.onDestroy();
     }
 }
