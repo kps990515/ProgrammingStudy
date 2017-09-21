@@ -17,3 +17,5 @@
 ### 8. [그림판](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/CustomView/app)
 
 ### 9. [BasicList](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/BasicList)
+
+### 10. [Android Memo](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/AndroidMemo)
