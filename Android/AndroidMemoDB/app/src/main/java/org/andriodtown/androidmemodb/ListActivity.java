@@ -47,7 +47,7 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_create:
-                create();
+                createAfterRead();
                 break;
             case R.id.btn_read:
                 read();
@@ -59,27 +59,36 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void create(){
+    // create버튼 눌렀을 떄
+    private void createAfterRead(){
+        Memo memo = getMemoFromScreen();
+        // 생성
+        create(memo);
+        // 결과 안내
+        showInfo("입력되었습니다");
+        // 화면 초기화
+        resetScreen();
+        // 읽기
+        read();
+    }
+    // -> 동작 순서
+    private Memo getMemoFromScreen(){
         // 1. 화면에서 입력된 값을 가져온다
         String title = edit_title.getText().toString();
         String content = edit_content.getText().toString();
-
-        // 2. 쿼리를 만든다
-        String query = "insert into memo(title, content, n_date)" +
-                       " values('"+title+"','"+content+"',datetime('now','localtime')";
-
-        // 3. DB에 실행
-        dao.create(query);
-
-        // 4. 입력 화면 초기화
+        // 2. 메모객체를 하나 생성해서 값을 담는다
+        return new Memo(title,content);
+    }
+    public void create(Memo memo){
+        dao.create(memo);
+    }
+    private void showInfo(String comment){
+        Toast.makeText(this, comment, Toast.LENGTH_SHORT).show();
+    }
+    private void resetScreen(){
+        // 입력 화면 초기화
         edit_title.setText("");
         edit_content.setText("");
-
-        //5. 결과 안내
-        Toast.makeText(this, "입력되었습니다!!!", Toast.LENGTH_SHORT).show();
-
-        // 6. 읽기
-        read();
     }
 
     public void read(){

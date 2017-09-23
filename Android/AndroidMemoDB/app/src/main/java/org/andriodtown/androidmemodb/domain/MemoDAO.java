@@ -21,7 +21,6 @@ import java.util.ArrayList;
 public class MemoDAO {
 
     DBHelper helper;
-
     public MemoDAO(Context context){
         helper = new DBHelper(context);
     }
@@ -32,8 +31,13 @@ public class MemoDAO {
     // 3. 연결을 해제
 
     // 생성 C
-    public void create(String query){
+    public void create(Memo memo){
         SQLiteDatabase con = helper.getWritableDatabase();
+
+        // 넘겨받은 Memo클래스를 분해해서 쿼리를 만든다
+        String query = "insert into memo(title, content, n_date)" +
+                " values('"+memo.title+"','"+memo.content+"',datetime('now','localtime'))";
+
         con.execSQL(query);
         con.close();
     }

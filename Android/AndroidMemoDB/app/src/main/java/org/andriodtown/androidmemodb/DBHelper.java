@@ -72,6 +72,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 }
+/*
 class Singleton {
     // 인스턴스를 한개 저장하는 저장소
     private static Singleton instance = null; // <- new Singleton();
@@ -89,3 +90,4 @@ class Singleton {
 
     }
 }
+    */
