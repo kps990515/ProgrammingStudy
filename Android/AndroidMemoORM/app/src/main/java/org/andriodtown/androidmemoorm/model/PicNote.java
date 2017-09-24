@@ -17,6 +17,7 @@ public class PicNote {
     @DatabaseField
     private String title;
     // 그림
+    @DatabaseField
     private String bitmap_path;
     // 날짜
     private long datetime;

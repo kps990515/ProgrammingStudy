@@ -1,11 +1,14 @@
 package org.andriodtown.androidmemoorm;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
 import org.andriodtown.androidmemoorm.dao.PicNoteDAO;
 import org.andriodtown.androidmemoorm.model.PicNote;
@@ -23,12 +26,37 @@ RecyclerView를 사용한 목록 만들기
 
 public class MainActivity extends AppCompatActivity {
 
+    // 0. 권한 요청 코드
+    private static final int REQ_CODE = 999;
+    // 1. 권한 정의
+    private String permissions[] = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+    PermissionUtil pUtil;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        init();
+        pUtil = new PermissionUtil(REQ_CODE,permissions);
+        if(pUtil.checkPermission(this)){
+            init();
+        }
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(pUtil.afterPermissionResult(requestCode, grantResults)){
+            init();
+        }else{
+            Toast.makeText(getApplicationContext(), "권한필요!",Toast.LENGTH_SHORT).show();
+
+        }
+
+    }
+
     public void post(View view){
         Intent intent = new Intent(this,DrawActivity.class);
         startActivity(intent);

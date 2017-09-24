@@ -8,40 +8,33 @@ import java.util.Scanner;
 public class test {
 
 	public static void main(String[] args) {
-		HashSet<Integer>set = new HashSet<>();
-		Random random = new Random();
-		int [][] array = new int[4][4];
-		int [] temp = new int[10];
-		int [] temp2 = new int[6];
-		for(int i=0; i<10; i++) {
-			temp[i]=random.nextInt(10)+1;
-		}
-		while(set.size()<6) {
-			set.add(random.nextInt(16));
-		}
-		for(int i=0; i<4; i++) 
-		{
-			for(int j=0; j<4; j++) 
-			{
-				array[i][j]=100;
-			}
-		}
-		for(int item : set) {
-			array[item/4][item%4]=0;
-		}
-		int k=0;
-		for(int i=0; i<4; i++) 
-		{
-			for(int j=0; j<4; j++) 
-			{
-				if(array[i][j]==100) 
-				{
-					array[i][j]=temp[k];
-					k++;
-				}
-				System.out.print(array[i][j]+"\t");
-			}
-			System.out.print("\n");
-		}
-	}
+	      Scanner sc = new Scanner(System.in);
+	      String input="";
+	      char alphabet = 0;
+	      System.out.println("소문자 알파벳 하나를 입력하시오 : ");
+	      input = sc.nextLine();
+	      char [] temp = input.toCharArray();
+	      for(int i=0; i<temp.length; i++) {
+	         if(temp[i]<'a'||temp[i]>'z') {
+	            System.out.println("소문자 알파벳이 아닙니다");
+	            break;
+	         }
+	         else if(temp.length>1) {
+	            System.out.println("소문자 알파벳 하나만 입력하시오");
+	            break;
+	         }else {
+	            alphabet = temp[0];
+	         }
+	      }
+	      int anumber = (int)alphabet;
+	      int decrease = anumber;
+	      for(int i=0; i<=anumber-97; i++)
+	      {
+	         for(int j=97; j<=decrease ; j++) {
+	            System.out.print(((char)(j)));
+	         }
+	         decrease--;
+	         System.out.print("\n");
+	      }
+	   }
 }

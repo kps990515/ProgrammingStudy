@@ -17,6 +17,7 @@ import org.andriodtown.androidmemoorm.dao.PicNoteDAO;
 import org.andriodtown.androidmemoorm.model.PicNote;
 import org.andriodtown.androidmemoorm.util.FileUtil;
 
+import java.io.File;
 import java.io.IOException;
 
 public class DrawActivity extends AppCompatActivity {
@@ -96,7 +97,20 @@ public class DrawActivity extends AppCompatActivity {
         // 2. 레이아웃에서 그려진 내용을 bitmap형태로 가져온다
         Bitmap bitmap = stage.getDrawingCache();
         // 3. 파일 저장
-        String filename = editTitle.getText().toString();
+        // 이미지 이름을 생성
+        String filename = System.currentTimeMillis()+".jpg";
+        // 파일명 중복 검사
+        // 1) 현재 파일명을 풀 경로로 file객체로 변환
+        String dir = getFilesDir().getAbsolutePath();
+        File file = new File(dir + "/" + filename);
+        int count=0;
+        // 2) 반복문을 통해 동일 이름 있으면 새롭게 변경
+        while(file.exists()){
+            count++;
+            filename = System.currentTimeMillis()+ "("+count+")"+ " .jpg";
+            file = new File(dir+ "/" + filename);
+        }
+
         try {
             // data/data/패키지/files 밑에
             FileUtil.write(this,filename,bitmap);
@@ -106,10 +120,11 @@ public class DrawActivity extends AppCompatActivity {
         // 4. 데이터베이스의 경로에도 저장
         PicNote picNote = new PicNote();
         picNote.setBitmap(filename);
-        picNote.setTitle(filename);
+        picNote.setTitle(editTitle.getText().toString());
         picNote.setDatetime(System.currentTimeMillis());
         dao.create(picNote);
         // 5. Native에 다 썻다고 알려주기
         bitmap.recycle();
+        finish();
     }
 }
