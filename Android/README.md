@@ -22,4 +22,6 @@
 
 ### 11. [AndroidMemoDB](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/AndroidMemoDB)
 
-### 12. [AndroidMemoORM+Permission](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/AndroidMemoORM)
+### 12. [AndroidMemoORM](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/AndroidMemoORM)
+
+### 13. [Permission](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/Permission)
