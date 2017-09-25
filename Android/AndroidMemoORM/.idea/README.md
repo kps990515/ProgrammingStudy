@@ -36,6 +36,7 @@ public class PermissionUtil {
 - 권한이 없으면 requires에 넣어준다
 - requires에 있는 권한들을 꺼내서 권한요청을 한다
 
+```java
     @TargetApi(Build.VERSION_CODES.M)
     private boolean requestPermission(Activity activity) {
         // 3. 권한에 대한 승인 여부
