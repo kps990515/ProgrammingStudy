@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
+
+// abstract로 한 이유는 main에서 init()을 강제하고 Override하기 위해서
 public abstract class BaseActivity extends AppCompatActivity {
 
     private static final int REQ_CODE = 999;

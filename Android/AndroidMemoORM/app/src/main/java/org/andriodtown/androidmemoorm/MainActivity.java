@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import org.andriodtown.androidmemoorm.dao.PicNoteDAO;
 import org.andriodtown.androidmemoorm.model.PicNote;
+import org.andriodtown.androidmemoorm.util.PermissionUtil;
 
 import java.util.List;
 

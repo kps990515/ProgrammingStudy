@@ -1,4 +1,4 @@
-package org.andriodtown.androidmemoorm;
+package org.andriodtown.androidmemoorm.util;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
