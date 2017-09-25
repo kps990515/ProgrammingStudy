@@ -10,7 +10,7 @@
 
 ### 5. [Linearlayout & 버튼날라가기](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/LinearLocation)
 
-### 6. [위젯](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/BasicWidget)
+### 6. [Widget](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/BasicWidget)
 
 ### 7. [Custom View](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/CustomView)
 
@@ -22,4 +22,4 @@
 
 ### 11. [AndroidMemoDB](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/AndroidMemoDB)
 
-### 12. [AndroidMemoORM](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/AndroidMemoORM)
+### 12. [AndroidMemoORM+Permission](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/AndroidMemoORM)
