@@ -25,3 +25,9 @@
 ### 12. [AndroidMemoORM](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/AndroidMemoORM)
 
 ### 13. [Permission](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/Permission)
+
+### 14. [Contact](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/Contact)
+
+### 15. [Gallery & Camera](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/Gallery)
+
+### 16. [CustomGallery](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/CustomGallery)
