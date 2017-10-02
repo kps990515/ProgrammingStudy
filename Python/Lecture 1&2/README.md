@@ -1,24 +1,115 @@
-# Programming Language
+# Lecture 1&2
 
-### C언어
-- 가장 Low level을 건드릴 수 있는 언어
-- Assembly언어를 사용해서 기계, 임베디드 시스템에서 사용
+### 별 찍기
+```Python
+space=" "
+star="*"
+starRange=5
+line=starRange
+all=""
+enter="\n"
 
-### C++
-- C를 기반으로 만들어낸 언어
-- C에 객체지향을 더함
-- 매우 어려움 하지만 그만큼 powerful해서 수행속도가 빠름
-- 게임이나 기업소프트웨어용
-- 핵심기능 수행용
+print("range = "+str(starRange))
+while line>0:
+    spaceCnt = line - 1
+    space1=spaceCnt
+    space2=spaceCnt
+    starCnt = (starRange - line) * 2 + 1
+    while space1>0:
+        all+=space
+        space1-=1
+    while starCnt>0:
+        all+=star
+        starCnt-=1
+    while space2>0:
+        all+=space
+        space2-=1
+    all+=enter
+    line-=1
+print(all)
+```
 
-### Java
-- 객체지향 언어의 대표주자
-- GC같은 기능들을 자동적으로 지원해줘서 매우 편함
-- 성능은 좀 떨어지지만 유지보수, 개발 속도가 빠름
-- Android나 서버단에서 사용
+```Python
+range = 5
+    *    
+   ***   
+  *****  
+ *******
+*********
+```
 
-### Python
-- 배우기 매우 쉬움, 직관적
-- 그만큼 수행속도가 느림 & 성능은 좋지 않음
-- 하지만 CPU가 좋아져서 이런것을 감수하고 쓸 수 있음
-- 연구분야 특히 AI
+### List 평균 구하기
+```Python
+sum=0
+list = [70,60,55,75,95,90,80,80,85,100]
+for i in list:
+    sum+=i
+print(list)
+print("Average = "+str(sum/len(list)))
+print("==================================")
+```
+```Python
+[70, 60, 55, 75, 95, 90, 80, 80, 85, 100]
+Average = 79.0
+```
+
+### 소수 구하기
+```Python
+list2=[2]
+p=1
+while p<=100:
+    if(p>=3):
+        i=2
+        count=0
+        while i<=p-1:
+            if p%i!=0:
+                count+=1
+            i+=1
+        if count==p-2:
+            list2.append(p)
+    p+=1
+print("PrimeNumber = "+str(list2))
+```
+```Python
+PrimeNumber = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+```
+
+### 쌍둥이 소수
+```Python
+index=0
+count=0
+list3=[]
+while index<len(list2):
+    p1=list2[index]
+    p2=p1+2
+    if p2 in list2:
+        list3.append((p1,p2))
+    index+=1
+print("Twin-PrimeDouble = "+str(list3))
+```
+```Python  
+Twin-PrimeDouble = [(3, 5), (5, 7), (11, 13), (17, 19), (29, 31), (41, 43), (59, 61), (71, 73)]
+```
+
+### 평균구하는 함수
+```Python
+def avg(a,b,c):
+    average = (a+b+c)/3
+    return average
+print("avgFunction = "+str(avg(1,2,3)))
+```
+```Python  
+avgFunction = 2.0
+```
+
+### 팩토리얼 함수
+```Python
+def fact(a):
+    if(a==1):sum=1
+    else:sum=fact(a-1)*a
+    return sum
+print("factFunction = "+str(fact(4)))
+```
+```Python  
+factFunction = 24
+```
