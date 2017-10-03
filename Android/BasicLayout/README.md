@@ -1,8 +1,4 @@
-# 레이아웃 & 계산기
-
-## [계산기](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/BasicLayout/app)
-
-## 레이아웃
+# 레이아웃
 
 ### 1. Linear Layout
 <img src="https://github.com/kps990515/ProgrammingStudy/blob/master/Android/BasicLayout/linear.png" width=20%>
