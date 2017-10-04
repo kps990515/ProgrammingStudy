@@ -2,19 +2,18 @@
 
 ### 프로젝트
 
-#### [계산기](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/BasicLayout/app)
+#### 1. [계산기](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/BasicLayout/app)
 
-#### 애니메이션 & 애니메이터  
+#### 2. 애니메이션 & 애니메이터  
 
-- [4개버튼 날아가기 & 원상복귀](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/Rotating)
+  - [4개버튼 날아가기 & 원상복귀](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/Rotating)
 
-- [계산기 애니메이션](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/AniCal)
+  - [계산기 애니메이션](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/AniCal)
 
-- [Linearlayout & 버튼날라가기](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/LinearLocation)
+  - [Linearlayout & 버튼날라가기](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/LinearLocation)
 
-### 8. [그림판](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/CustomView/app)
+#### 3. [그림판](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/CustomView/app)
 
-### 9. [BasicList](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/BasicList)
 
 ### 10. [Android Memo](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/AndroidMemo)
 
@@ -45,3 +44,5 @@
 #### 3. [Widget](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/BasicWidget)
 
 #### 4. [Custom View](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/CustomView)
+
+#### 5. [ListView](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/BasicList)
