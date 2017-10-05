@@ -1,3 +1,5 @@
+![예시](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/AndroidMemoDB/Screenshot_1507169805.png)
+
 # AndroidMemoDB
 - SQLite를 연동해서 메모장 만들기
 - 안드로이드 sqlite 사용하기

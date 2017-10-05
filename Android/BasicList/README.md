@@ -1,14 +1,6 @@
 # BasicList
 
-![예시](https://github.com/kps990515/ProgrammingStudy/blob/master/Android/CustomView/anibutton.png)
-
-### 포함되는 코드들
-[scale.xml](https://github.com/kps990515/ProgrammingStudy/blob/master/Android/CustomView/app/src/main/res/anim/scale.xml)  
-[activty_main.xml](https://github.com/kps990515/ProgrammingStudy/blob/master/Android/CustomView/app/src/main/res/layout/activity_main.xml)  
-[attrs.xml](https://github.com/kps990515/ProgrammingStudy/blob/master/Android/CustomView/app/src/main/res/values/attrs.xml)  
- [AniButton.java](https://github.com/kps990515/ProgrammingStudy/blob/master/Android/CustomView/app/src/main/java/org/andriodtown/customview/AniButton.java)   
-[CustomView](https://github.com/kps990515/ProgrammingStudy/blob/master/Android/CustomView/app/src/main/java/org/andriodtown/customview/CustomView.java)  
-[MainActivity.java](https://github.com/kps990515/ProgrammingStudy/blob/master/Android/CustomView/app/src/main/java/org/andriodtown/customview/MainActivity.java)
+![예시](https://github.com/kps990515/ProgrammingStudy/blob/master/Android/BasicList/Screenshot_1507169805.png)
 
 ### 메인부분
 - 데이터를 정의
