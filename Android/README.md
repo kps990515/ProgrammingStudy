@@ -14,22 +14,18 @@
 
 #### 3. [그림판](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/CustomView/app)
 
+#### 4. 내부저장소, SQL, SQLite
 
-#### 4. [Android Memo](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/AndroidMemo)
+- [Android Memo](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/AndroidMemo)
 
-#### 5. [AndroidMemoDB](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/AndroidMemoDB)
+- [AndroidMemoDB](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/AndroidMemoDB)
 
-#### 6. [AndroidMemoORM](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/AndroidMemoORM)
+- [AndroidMemoORM](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/AndroidMemoORM)
 
+#### 5. 권한으로 내부파일 접근
+- [Gallery & Camera](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/Gallery)
 
-
-### 15. [Gallery & Camera](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/Gallery)
-
-### 16. [CustomGallery](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/CustomGallery)
-
-### 17. [FragmentBasic](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/FragmentBasic)
-
-### 18. [FragmentBasic2](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/FragmentBasic2)
+- [CustomGallery](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/CustomGallery)
 
 ### 19. [TabLayout](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/TabLayout)
 
@@ -45,6 +41,10 @@
 
 #### 5. [ListView](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/BasicList)
 
-### 6. [Permission](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/Permission)
+#### 6. [Permission](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/Permission)
 
-### 7. [Contact-내부저장소 읽어오기](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/Contact)
+#### 7. [Contact-내부저장소 읽어오기](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/Contact)
+
+#### 8. [FragmentBasic](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/FragmentBasic)
+
+#### 9. [FragmentBasic2](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/FragmentBasic2)
