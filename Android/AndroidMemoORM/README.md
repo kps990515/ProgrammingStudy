@@ -1,4 +1,7 @@
 # AndroidMemoORM
+
+![예시](https://github.com/kps990515/ProgrammingStudy/blob/master/Android/AndroidMemoORM/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C1.PNG)
+
 RecyclerView를 사용한 목록 만들기
 1. 데이터를 정의
 2. Adapter를 재정의

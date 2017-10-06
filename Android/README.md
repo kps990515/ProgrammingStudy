@@ -21,9 +21,7 @@
 
 #### 6. [AndroidMemoORM](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/AndroidMemoORM)
 
-### 13. [Permission](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/Permission)
 
-### 14. [Contact](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/Contact)
 
 ### 15. [Gallery & Camera](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/Gallery)
 
@@ -46,3 +44,7 @@
 #### 4. [Custom View](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/CustomView)
 
 #### 5. [ListView](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/BasicList)
+
+### 6. [Permission](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/Permission)
+
+### 7. [Contact-내부저장소 읽어오기](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/Contact)
