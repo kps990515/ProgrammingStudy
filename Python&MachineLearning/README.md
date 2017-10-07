@@ -4,4 +4,4 @@
 
 ### [Lecture 1&2](https://github.com/kps990515/ProgrammingStudy/tree/master/Python/Lecture%201%262)
 
-### [Lecture 3]()
+### [Lecture 3](https://github.com/kps990515/ProgrammingStudy/tree/master/Python%26MachineLearning/Lecture%203)
