@@ -1,5 +1,6 @@
 # ServiceBasic
-![예시](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/ServiceBasic/생명주기.png)
+
+![예시](https://github.com/kps990515/ProgrammingStudy/blob/master/Android/ServiceBasic/%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0.png)
 
 ### Main
 ```java
