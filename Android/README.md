@@ -27,7 +27,8 @@
 
 - [CustomGallery](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/CustomGallery)
 
-### 19. [TabLayout](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/TabLayout)
+#### 6. Thread
+- [RainDrop](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/RainDrop)
 
 ### 공부자료
 
@@ -48,3 +49,7 @@
 #### 8. [FragmentBasic](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/FragmentBasic)
 
 #### 9. [FragmentBasic2](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/FragmentBasic2)
+
+#### 10. [TabLayout](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/TabLayout)
+
+#### 11. [ServiceBasic](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/ServiceBasic)
