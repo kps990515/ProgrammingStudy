@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MusicPlayer</string>
+    <string name="tab_album">앨범</string>
+    <string name="tab_artist">가수</string>
+    <string name="tab_genre">장르</string>
+    <string name="tab_title" translatable="false">이름</string>
+</resources>

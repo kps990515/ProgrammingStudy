@@ -17,7 +17,8 @@ public class Music {
     private static Music music = null;
     public List<Item> data = new ArrayList<>();
 
-    private Music(){} // new 사용 방지위해 생성자를 private으로 만든다다
+    // Singleton 패턴
+    private Music(){} // new 사용 방지위해 생성자를 private으로 만든다
 
    public static Music getInstance(){
         if(music==null){

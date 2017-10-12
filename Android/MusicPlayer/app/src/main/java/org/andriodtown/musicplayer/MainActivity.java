@@ -10,6 +10,17 @@ import org.andriodtown.musicplayer.model.Music;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+    뮤직플레이어 만들기
+    1. 권한설정 : Read_External_Storage <- Main에 BaseActivity(권한요청)상속
+    2. 화면 만들기 : 메인 -> TabLayout & ViewPager
+                         -> TabLayout Fragment <- ListPager Adapter <- 메인에서 만든 MusicFragment담은 List
+                         -> ViewPager Fragment <- Recycler View(music_list) <- Recycler Adapter(MymusicAdapter) <- fragment_music.xml
+                    Music -> load() : 음악목록 가져오기
+                    Player -> ViewPager, Button, SeekBar
+                            -> ViewPager Fragment <- Player Pager Adapter <- item_player
+ */
+
 public class MainActivity extends BaseActivity implements MusicFragment.OnListFragmentInteractionListener{
     Music music = null;
     private ViewPager viewPager;

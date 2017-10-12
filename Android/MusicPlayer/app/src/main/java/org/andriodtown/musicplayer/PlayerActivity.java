@@ -51,7 +51,7 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initControl(){
-        // 볼륨 조절버튼으로 미디어 음량만 조절하기 위한 설정정
+        // 볼륨 조절버튼으로 미디어 음량만 조절하기 위한 설정
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         setPlayer();
     }
@@ -66,8 +66,8 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
             seekBarThread.setStop();
         }
         if(player != null){
-            player.release();
-            player=null;
+            player.release(); //player = 1444번지라 할때 release를 쭉 해준다
+            player=null; // player = 0번지로 초기화
         }
         // 음악uri 사용해서 플레이어 초기화
         player = MediaPlayer.create(this, musicUri);
@@ -187,7 +187,6 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
 
         }
     }
-
     Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {

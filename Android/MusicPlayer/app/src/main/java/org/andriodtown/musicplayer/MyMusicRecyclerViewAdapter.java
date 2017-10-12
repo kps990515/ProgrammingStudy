@@ -40,6 +40,7 @@ public class MyMusicRecyclerViewAdapter extends RecyclerView.Adapter<MyMusicRecy
         holder.mItem = mValues.get(position);
         holder.mContentView.setText(mValues.get(position).title);
         holder.mAlbumView.setImageURI(mValues.get(position).albumUri);
+        holder.mArtistView.setText(mValues.get(position).artist);
         holder.position = position;
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -64,13 +65,15 @@ public class MyMusicRecyclerViewAdapter extends RecyclerView.Adapter<MyMusicRecy
         public final View mView;
         public final TextView mContentView;
         public final ImageView mAlbumView;
+        public final TextView mArtistView;
         public Music.Item mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mContentView = (TextView) view.findViewById(R.id.txt_title);
             mAlbumView = (ImageView) view.findViewById(R.id.album);
+            mArtistView = (TextView) view.findViewById(R.id.txt_artist);
         }
 
         @Override
