@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.andriodtown.musicplayer">
+    package="org.andriodtown.player">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
 
     <application
         android:allowBackup="true"
@@ -18,14 +19,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".player.PlayerActivity"
-            android:screenOrientation="portrait" />
-
-        <service
-            android:name=".player.PlayerService"
-            android:enabled="true"
-            android:exported="true"></service>
     </application>
 
 </manifest>

@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
 import org.andriodtown.musicplayer.model.Music;
+import org.andriodtown.musicplayer.player.PlayerActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +78,7 @@ public class MainActivity extends BaseActivity implements MusicFragment.OnListFr
     @Override
     public void openPlayer(int position) {
         Intent intent = new Intent(this,PlayerActivity.class);
-        intent.putExtra(Constant.KEY_POSITION_NAME,position);
+        intent.putExtra(Constant.KEY_POSITION,position);
         startActivity(intent);
     }
 }

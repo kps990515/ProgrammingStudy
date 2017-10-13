@@ -1,16 +1,19 @@
-package org.andriodtown.musicplayer2.player;
+package org.andriodtown.player.player;
 
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
 
-import org.andriodtown.musicplayer2.Const;
+import org.andriodtown.player.Const;
+
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Created by pc on 10/12/2017.
  */
 
-public class Player {
+public class Player{
     //Singleton
     private static Player instance = new Player();
     private Player(){ }
@@ -78,5 +81,40 @@ public class Player {
         if(player != null)
             return player.getDuration();
         return 0;
+    }
+
+    public Thread playerThread = new Thread(){
+        public void run(){
+            while(runFlag){
+                for(IObserver o :observers)
+                    o.setProgress();
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    };
+
+    private boolean runFlag = true;
+    public void setStop(){
+        runFlag = false;
+    }
+    // CopyOnWriteArrayList <= 동기화를 지원하는 컬렉션
+    // run() 함수의 향상된 for문에서 observers를 읽고 있으면
+    //       대기하고 있다가 읽기가 끝나면 add(), remove()를 실행해서
+    //       충돌을 방지해준다.
+    private List<IObserver> observers = new CopyOnWriteArrayList<>();
+
+    public void add(IObserver observer){
+        observers.add(observer);
+    }
+    public void remove(IObserver observer){
+        observers.remove(observer);
+    }
+    // Observer
+    public interface IObserver{
+        public void setProgress();
     }
 }

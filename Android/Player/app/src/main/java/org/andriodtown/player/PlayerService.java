@@ -1,16 +1,15 @@
-package org.andriodtown.musicplayer2;
+package org.andriodtown.player;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-import org.andriodtown.musicplayer2.domain.Music;
-import org.andriodtown.musicplayer2.player.Player;
-import org.andriodtown.musicplayer2.player.SeekBarThread;
+import org.andriodtown.player.domain.Music;
+import org.andriodtown.player.player.Player;
 
 public class PlayerService extends Service {
     Player player = null;
-    SeekBarThread thread = null;
+    Thread thread = null;
     Music music = null;
     int current = -1;
     public PlayerService() {}
@@ -19,7 +18,7 @@ public class PlayerService extends Service {
     public void onCreate() {
         super.onCreate();
         player = Player.getInstance();
-        thread = SeekBarThread.getInstance();
+        thread = Player.getInstance().playerThread;
         thread.start();
         music = Music.getInstance();
     }
@@ -71,7 +70,7 @@ public class PlayerService extends Service {
         if(player != null)
             player = null;
         if(thread != null) {
-            thread.setStop();
+            Player.getInstance().setStop();
             thread = null;
         }
         super.onDestroy();
