@@ -166,7 +166,7 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
         player.seekTo(player.getCurrentPosition()+10000);
         if(player.getCurrentPosition()+10000>player.getDuration()){
             seekBar.setProgress(player.getDuration());
-            txt_currentTime.setText(miliToSec(player.getD uration()));
+            txt_currentTime.setText(miliToSec(player.getDuration()));
         }
     }
 

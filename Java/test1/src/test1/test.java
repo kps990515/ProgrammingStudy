@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class test {
 
 	public static void main(String[] args) {
-		int [] inputArray = {1, 4, 10, 6, 2};
+		int [] inputArray = {1, 4, 10, 6, 2};//1 2 4 6 10
 		Arrays.sort(inputArray);
 	    int jump=inputArray[0]+1;
 	    int count=0;
