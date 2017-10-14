@@ -15,7 +15,7 @@ import java.util.List;
 
 public class Music {
     private static Music music = null;
-    public List <Item> musiclist = new ArrayList<>();
+    public static List <Item> musiclist = new ArrayList<>();
 
     private Music(){
 
@@ -25,7 +25,7 @@ public class Music {
         if(music == null){
             music = new Music();
         }
-            return music;
+        return music;
     }
 
     public void load(Context context){
@@ -40,7 +40,7 @@ public class Music {
                 MediaStore.Audio.Media.ARTIST
         };
 
-        Cursor cursor = contentResolver.query(mediaUri,proj,null,null,proj[2] + "ASC");
+        Cursor cursor = contentResolver.query(mediaUri,proj,null,null,proj[2] + " ASC");
         if(cursor!=null){
             while(cursor.moveToNext()){
                 Item item = new Item();
