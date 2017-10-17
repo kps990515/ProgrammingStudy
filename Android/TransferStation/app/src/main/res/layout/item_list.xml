@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        app:cardCornerRadius="5dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txt_num"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignBaseline="@+id/txt_station"
+                android:layout_alignBottom="@+id/txt_station"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:text="1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_station"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_above="@+id/txt_Sun"
+                android:layout_alignEnd="@+id/txt_Sat"
+                android:layout_alignRight="@+id/txt_Sat"
+                android:text="신도림"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_Week"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/txt_num"
+                android:layout_toRightOf="@+id/txt_num"
+                android:text="WeekDay"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_station"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="0dp" />
+
+            <TextView
+                android:id="@+id/txt_Sat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_station"
+                android:layout_centerHorizontal="true"
+                android:text="Saturday"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:layout_constraintTop_toBottomOf="@+id/txt_station"
+                android:layout_marginTop="0dp"
+                app:layout_constraintLeft_toRightOf="@+id/txt_Week"
+                android:layout_marginLeft="8dp"
+                app:layout_constraintRight_toLeftOf="@+id/txt_Sun"
+                android:layout_marginRight="8dp" />
+
+            <TextView
+                android:id="@+id/txt_Sun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/txt_Week"
+                android:layout_alignBottom="@+id/txt_Week"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="44dp"
+                android:layout_marginRight="24dp"
+                android:text="Sunday"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_station"
+                android:layout_marginTop="0dp" />
+
+            <TextView
+                android:id="@+id/txt_week"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="33333"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:layout_constraintTop_toBottomOf="@+id/txt_Week"
+                android:layout_alignBottom="@+id/txt_sat"
+                android:layout_alignLeft="@+id/txt_Week"
+                android:layout_alignStart="@+id/txt_Week"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="0dp"
+                app:layout_constraintLeft_toLeftOf="@+id/txt_Week" />
+
+            <TextView
+                android:id="@+id/txt_sat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/txt_station"
+                android:layout_alignStart="@+id/txt_station"
+                android:layout_below="@+id/txt_Sat"
+                android:layout_marginTop="8dp"
+                android:text="22222"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:layout_constraintTop_toBottomOf="@+id/txt_Sat"
+                android:layout_marginLeft="0dp"
+                app:layout_constraintLeft_toLeftOf="@+id/txt_Sat" />
+
+            <TextView
+                android:id="@+id/txt_sun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/txt_sat"
+                android:layout_alignLeft="@+id/txt_Sun"
+                android:layout_alignStart="@+id/txt_Sun"
+                android:text="11111"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:layout_constraintTop_toBottomOf="@+id/txt_Sun"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="0dp"
+                app:layout_constraintLeft_toLeftOf="@+id/txt_Sun" />
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
