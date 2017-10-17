@@ -1,6 +1,6 @@
 # AsyncTask
 
-![설명](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/AsyncTask/예시.png)
+![설명](https://github.com/kps990515/ProgrammingStudy/blob/master/Android/AsyncTask/%EC%98%88%EC%8B%9C.png)
 
 ### 설명
 AsyncTask = 세개의 기본함수를 지원하는 Thread(Thread + Handler)  
