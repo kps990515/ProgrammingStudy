@@ -1,19 +1,14 @@
-package org.andriodtown.transferstation;
+# Gson & SodHanaLibrary
 
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+### SodHanaLibrary
+- Json내용값을 입력해주면 자동으로 상위~하위 클래스로 변환해준다
+- 동일 클래스들을 생성해주고 내용을 복사 붙여넣기 해줘서 사용
 
-import com.google.gson.Gson;
+### 코드
+- Row의 내용을 가져오고 싶을 때는
+- 최상위 클래스 + get하위클래스 +...+get Row
 
-import org.andriodtown.transferstation.model.Row;
-import org.andriodtown.transferstation.model.SubTran;
-
-import java.util.Arrays;
-import java.util.List;
-
+```java
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
@@ -53,3 +48,5 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }
+
+```

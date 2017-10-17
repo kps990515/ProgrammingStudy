@@ -1,23 +1,15 @@
-package org.andriodtown.bicycle;
+# Google Map
 
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+### MapsActivity
+- MapsActivity를 자동으로 생성해주면
+- Map이 Fragment로 자동생성 + OnMapReadyCallback implements
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.gson.Gson;
+### 메인파트
+- mapFragment를 생성
+- 맵이 사용할 준비가 되었는지를 확인(getMapAsync)
+- 준비가 됐으면 onMapReady()호출
 
-import org.andriodtown.bicycle.model.Json;
-import org.andriodtown.bicycle.model.Row;
-
-import java.util.Arrays;
-import java.util.List;
-
+```java
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -34,23 +26,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
         // 맵이 사용할 준비가 되었으면 -> OnMapReadyCallback.onMapReady를 호출
     }
+```
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
+### onMapReady()
+- 맵이 준비되었으면 load()를 통해 json데이터 읽어오기
+
+```java
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         load();
     }
+```
 
+### load()
+- json정보를 읽어오고
+- 다 읽어왔으면 marker()를 통해 지도에 marker찍기
 
+```java
     private void load(){
         new AsyncTask<Void, Void, String>() {
             @Override
@@ -70,6 +63,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }.execute();
     }
+```
+
+### marker()
+
+```java
     public void marker(){
         for(Row item : data){
             LatLng latLng = new LatLng(Double.parseDouble(item.getLAT()),Double.parseDouble(item.getLNG()));
@@ -79,3 +77,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(first,10));
     }
 }
+```
