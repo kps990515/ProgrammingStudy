@@ -53,6 +53,7 @@ class WebServer extends Thread{
 							System.out.println("line = "+line);
 							// 5. 요청된 명령어의 첫줄만 parsing해서 동작을 결정
 							// Method[] + 도메인을 제외한 주소[] + 프로토콜의 버전
+							// line = GET /test.txt HTTP/1.1
 							String [] cmd = line.split(" ");
 							if("/hello".equals(cmd[1])){
 								String msg = "<h1>Hello~~~~~~~~~~~~~~~~~</h1>";
