@@ -1,11 +1,12 @@
-package org.andriodtown.subway.model.Station;
+package org.andriodtown.subway.model.Station.station;
 
 /**
  * Created by user on 2017-10-19.
  */
 
-public class SearchSTNBySubwayLineService {
-    private RESULT RESULT;
+public class SearchSTNBySubwayLineService
+{
+    private org.andriodtown.subway.model.Station.station.RESULT RESULT;
 
     private String list_total_count;
 

@@ -1,11 +1,12 @@
-package org.andriodtown.subway.model.Station;
+package org.andriodtown.subway.model.Station.station;
 
 /**
  * Created by user on 2017-10-19.
  */
 
-public class StInfo {
-    private SearchSTNBySubwayLineService SearchSTNBySubwayLineService;
+public class StInfo
+{
+    private org.andriodtown.subway.model.Station.station.SearchSTNBySubwayLineService SearchSTNBySubwayLineService;
 
     public SearchSTNBySubwayLineService getSearchSTNBySubwayLineService ()
     {

@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LinesActivity"></activity>
+        <activity android:name=".LinesActivity" />
+        <activity android:name=".StationActivity"></activity>
     </application>
 
 </manifest>

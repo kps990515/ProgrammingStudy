@@ -9,16 +9,17 @@ import android.support.v7.widget.RecyclerView;
 
 import com.google.gson.Gson;
 
-import org.andriodtown.subway.model.Station.Row;
-import org.andriodtown.subway.model.Station.StInfo;
+import org.andriodtown.subway.model.Station.station.Row;
+import org.andriodtown.subway.model.Station.station.StInfo;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class LinesActivity extends AppCompatActivity {
+public class LinesActivity extends AppCompatActivity{
     String line;
     List<Row> data;
     RecyclerView recyclerView;
+    int position;
 
 
     @Override
@@ -38,7 +39,7 @@ public class LinesActivity extends AppCompatActivity {
 
             @Override
             protected String doInBackground(Void... params) {
-                String str = Remote.getData("http://openapi.seoul.go.kr:8088/48505a784c6b707333355679736259/xml/SearchSTNBySubwayLineService/1/200/"
+                String str = Remote.getData("http://openapi.seoul.go.kr:8088/48505a784c6b707333355679736259/json/SearchSTNBySubwayLineService/1/200/"
                                                     +line+"/");
                 return str;
             }
@@ -59,4 +60,5 @@ public class LinesActivity extends AppCompatActivity {
         recyclerView.setAdapter(listAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
+
 }

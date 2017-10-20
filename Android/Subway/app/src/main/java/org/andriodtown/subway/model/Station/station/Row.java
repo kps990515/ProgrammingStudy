@@ -1,10 +1,11 @@
-package org.andriodtown.subway.model.Station;
+package org.andriodtown.subway.model.Station.station;
 
 /**
  * Created by user on 2017-10-19.
  */
 
-public class Row {
+public class Row
+{
     private String STATION_NM;
 
     private String STATION_CD;
