@@ -1,3 +1,6 @@
+# Server_post
+
+```JavaScript
 var http = require("http");
 var u = require("url");
 var fs = require("fs");
@@ -78,3 +81,41 @@ var sendHttpResult = function(){
 server.listen(8090, function(){
 	console.log("server is running...");
 });
+```
+
+# post.html
+```html
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title> Hello html</title>
+        <!--여기는 브라우저창에 현재 페이지 정보를 알려주는 역활-->
+    </head>
+    <body>
+        <form action = "/post" method = "GET">
+            ID : <input type = "text" id = "id" name = "id"/></br>
+            PW : <input type = "text" id = "pw" name = "pw"/>
+            <input type = "submit" value = "전송"/>
+        </form>
+        <!-- 브라우저 화면에 나타남 -->
+    </body>
+</html>
+```
+
+# view.html(동영상)
+```html
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title> Movie Viewer</title>
+        <!--여기는 브라우저창에 현재 페이지 정보를 알려주는 역활-->
+    </head>
+    <body>
+        <video width="640" height="480" controls>
+            <source src = "/getfile?filepath=file/sample.mp4"  type="video/mp4"/>
+            당신의 브라우저는 해당 동영상 타입을 지원하지 않습니다
+        </video>
+        <!-- 브라우저 화면에 나타남 -->
+    </body>
+</html>
+```
