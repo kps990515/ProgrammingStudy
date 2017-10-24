@@ -26,4 +26,8 @@ public class MyLinkedList {
 		size++;
 	}
 	
+	public void setLast(Node lastnode) {
+		lastnode.nextNode=null;
+	}
+	
 }
