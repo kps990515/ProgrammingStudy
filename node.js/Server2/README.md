@@ -73,6 +73,31 @@ var server = http.createServer(function(request,response){
         response.end("<h1>404 Page Not Found</h1>");
     }
 });
+}else if(cmds[1]=="signin"){
+		var id = "root";
+		var pw = "qwer1234";
+		var sign;
+		var postdata="";
+
+		request.on("data",function(data){
+				postdata+=data;
+		});
+
+		request.on("end", function(){
+				sign = qs.parse(postdata);
+				if(sign.id == id && sign.pw == pw){
+						response.writeHead(200,{'Content-Type':'text/html'});
+						response.end("OK");
+				}else{
+						response.writeHead(200,{'Content-Type':'text/html'});
+						response.end("FAIL");
+				}
+		});            
+}else{
+		response.writeHead(404,{'Content-Type':'text/html'});
+		response.end("404 Page Not Found");
+}
+});
 
 var sendHttpResult = function(){
 
