@@ -42,6 +42,10 @@ public class Result
         this.msg = msg;
     }
 
+    public boolean getSucess(){
+        return "200".equals(code);
+    }
+
     @Override
     public String toString()
     {

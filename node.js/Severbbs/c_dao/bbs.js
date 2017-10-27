@@ -3,6 +3,7 @@ var mongo = require("mongodb").MongoClient;
 var dbname = "bbsdb";
 var dburl = "mongodb://localhost:27017/"+dbname;
 var table = "bbs";
+var page_count = 20;
 
 exports.create = function(bbs, callback){
 	mongo.connect(dburl, function(error, db){
@@ -19,7 +20,16 @@ exports.create = function(bbs, callback){
 
 exports.read = function(search, callback){
 	mongo.connect(dburl, function(error, db){
-		var cursor = db.collection(table).find(search);
+        var sort = {
+            no : -1 // 1 오름차순, -1 내림차순 
+        };
+        // skip - 카운트를 시작할 index의 위치
+        // limit - 가져올 개수
+        var start = (search.page-1)*page_count;
+        // 사용하지 않는 검색컬럼은 삭제처리
+        delete search.page;
+        var cursor = db.collection(table).find(search).sort(sort)
+                        .skip(start).limit(page_count);
 		cursor.toArray(function(error,documents){
 			if(error){
 
