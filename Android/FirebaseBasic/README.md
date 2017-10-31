@@ -1,5 +1,7 @@
 # FirebaseBasic
 
+![예시](https://github.com/kps990515/ProgrammingStudy/blob/master/Android/FirebaseBasic/Screenshot_1509325335.png)
+
 ### on Create()
 - database = FirebaseDatabase
 - bbsRef = bbs테이블
