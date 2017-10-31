@@ -1,4 +1,5 @@
 # StorageActivity
+![예시](https://github.com/kps990515/ProgrammingStudy/blob/master/Android/FirebaseBasic2/app/Screenshot_20171101-094747.png)
 - strage와 실시간 데이터베이스 사용
 - 실시간으로 유저의 목록이 뜨고
 - 유저를 선택하면 id,token이 설정되며 메시지 발송가능

@@ -1,4 +1,5 @@
 # FirebaseBasic2
+![예시](https://github.com/kps990515/ProgrammingStudy/blob/master/Android/FirebaseBasic2/Screenshot_1509497090.png)
 - 유저가 가입하는 signup파트와
 - 가입한 유저가 로그인하는 signin파트로 구성
 - signup시 이메일 형식, 비밀번호 형식 체크

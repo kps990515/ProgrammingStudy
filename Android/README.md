@@ -67,3 +67,6 @@
 #### 17. [HttpSignin](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/HttpSignin)
 
 #### 18. [FirebaseBasic](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/FirebaseBasic)
+
+#### 19.
+[FirebaseBasic2](https://github.com/kps990515/ProgrammingStudy/tree/master/Android/FirebaseBasic2)
