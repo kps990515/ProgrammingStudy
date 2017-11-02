@@ -36,7 +36,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Holder> {
     @Override
     public void onBindViewHolder(UserAdapter.Holder holder, int position) {
         User user = data.get(position);
-        holder.txt_id.setText(user.id);
+        holder.txt_id.setText(user.email);
         holder.txt_token.setText(user.token);
     }
 
@@ -48,7 +48,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Holder> {
     public class Holder extends RecyclerView.ViewHolder{
         TextView txt_id;
         TextView txt_token;
-        public Holder(View itemView) {
+        public Holder(final View itemView) {
             super(itemView);
             txt_id = itemView.findViewById(R.id.txt_id);
             txt_token = itemView.findViewById(R.id.txt_token);
@@ -60,7 +60,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Holder> {
                     callback.setIdAndToken(id,token);
                 }
             });
-
         }
     }
 
