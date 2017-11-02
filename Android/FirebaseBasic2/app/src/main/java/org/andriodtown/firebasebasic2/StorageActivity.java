@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -25,6 +26,14 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class StorageActivity extends AppCompatActivity implements UserAdapter.Callback{
     // 파일저장소
@@ -80,7 +89,50 @@ public class StorageActivity extends AppCompatActivity implements UserAdapter.Ca
     }
 
     public void send(View view){
+        String token = txt_token.getText().toString();
+        String msg = edit_msg.getText().toString();
 
+        if(token == null || "".equals(token)){
+            Toast.makeText(this, "받는사람을 선택하세요", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(msg == null || "".equals(msg)){
+            Toast.makeText(this, "메시지를 입력하세요", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String json = "{\"to\":\""+token+"\", \"msg\":\""+msg+"\"}";
+
+        // 레트로핏 선언
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.1.104:8090/")
+                .build();
+        // 인터페이스와 결합
+        IRetro service = retrofit.create(IRetro.class);
+        RequestBody body = RequestBody.create(MediaType.parse("application/json"), json);
+        // 서비스로 서버 연결준비
+        Call<ResponseBody> remote = service.sendNotification(body);
+        // 실제 연결후 데이터 처리
+        remote.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.isSuccessful()){
+                    ResponseBody data = response.body();
+                    try {
+                        Toast.makeText(StorageActivity.this
+                                , data.string()
+                                , Toast.LENGTH_SHORT).show();
+                    }catch(Exception e){e.printStackTrace();}
+                }else{
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e("Retro",t.getMessage());
+            }
+        });
     }
 
     // 파일 탐색기 호출
