@@ -7,6 +7,7 @@ package org.andriodtown.firebasebasic2;
 public class User {
     String id;
     String token;
+    String email;
 
     public User(){
 
@@ -15,5 +16,6 @@ public class User {
     public User(String id, String token){
         this.id = id;
         this.token = token;
+        this.email = email;
     }
 }

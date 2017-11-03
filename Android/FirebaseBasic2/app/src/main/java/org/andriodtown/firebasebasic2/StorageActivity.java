@@ -73,10 +73,8 @@ public class StorageActivity extends AppCompatActivity implements UserAdapter.Ca
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<User> data = new ArrayList<>();
                 for(DataSnapshot item : dataSnapshot.getChildren()){
-                    String id = item.getKey();
-                    String token = (String)item.getValue();
-
-                    data.add(new User(id,token));
+                    User user = item.getValue(User.class);
+                    data.add(user);
                 }
                 adapter.setDataAndRefresh(data);
             }
@@ -105,7 +103,7 @@ public class StorageActivity extends AppCompatActivity implements UserAdapter.Ca
 
         // 레트로핏 선언
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.104:8090/")
+                .baseUrl("https://us-central1-fir-basic2-4da08.cloudfunctions.net/sendNotification")
                 .build();
         // 인터페이스와 결합
         IRetro service = retrofit.create(IRetro.class);

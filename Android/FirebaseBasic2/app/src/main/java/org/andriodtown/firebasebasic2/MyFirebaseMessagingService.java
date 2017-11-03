@@ -4,6 +4,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
@@ -12,6 +13,8 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.Map;
+
 /**
  * Created by user on 2017-10-31.
  */
@@ -19,7 +22,7 @@ import com.google.firebase.messaging.RemoteMessage;
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgService";
 
-    // 내 앱이 화면에 현재 더있으면 noti가 전송됐을 때 이 함수가 호출
+    // 내 앱이 화면에 현재 떠있으면 noti가 전송됐을 때 이 함수가 호출
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
 
@@ -34,6 +37,24 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
+
+        String type = "";
+        Map map = remoteMessage.getData();
+        if(map!=null){
+            type = map.get("type") != null ? (String)map.get("type"):"";
+        }
+
+        MediaPlayer player;
+        switch(type){
+            case "one":
+                player = MediaPlayer.create(getBaseContext(),R.raw.watershot);
+                break;
+            default:
+                player = MediaPlayer.create(getBaseContext(),R.raw.gunreload33);
+                break;
+        }
+        player.setLooping(false);
+        player.start();
     }
 
     private void sendNotification(String messageBody) {

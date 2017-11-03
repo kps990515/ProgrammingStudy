@@ -36,7 +36,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Holder> {
     @Override
     public void onBindViewHolder(UserAdapter.Holder holder, int position) {
         User user = data.get(position);
-        holder.txt_id.setText(user.id);
+        holder.txt_id.setText(user.email);
         holder.txt_token.setText(user.token);
     }
 
