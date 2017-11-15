@@ -55,8 +55,10 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.Holder> {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     Intent intent = new Intent(v.getContext(), ChatActivity.class);
                     intent.putExtra("friend_id",friend.id);
+                    intent.putExtra("chat_id",friend.chat_id);
                     v.getContext().startActivity(intent);
                 }
             });

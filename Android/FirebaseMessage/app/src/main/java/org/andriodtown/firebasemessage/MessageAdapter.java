@@ -1,7 +1,6 @@
 package org.andriodtown.firebasemessage;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -45,14 +44,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.Holder> 
     public void onBindViewHolder(MessageAdapter.Holder holder, int position) {
         Msg msg = data.get(position);
         holder.msg = msg;
-        holder.txt_friendname.setText(msg.user_id);
+        holder.txt_friendname.setText(msg.name);
         holder.txt_msg.setText(msg.msg);
         // 메세지 작성 id가 내 id와 같으면 메시지 레이아웃을 오른쪽 정렬
         if(msg.user_id.equals(PreferenceUtil.getUserId(context))){
             holder.itemLayout.setGravity(Gravity.RIGHT);
         }else{
             holder.itemLayout.setGravity(Gravity.LEFT);
-            holder.cardView.setCardBackgroundColor(Color.parseColor("#ffffff"));
         }
     }
 

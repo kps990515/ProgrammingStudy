@@ -28,49 +28,83 @@ public class ChatActivity extends AppCompatActivity {
     MessageAdapter adapter;
     FirebaseDatabase database;
     DatabaseReference msgRef;
-    String myId;
-    String friendId;
-    String myName;
+    DatabaseReference friendRef;
+    String myId="";
+    String friendId="";
+    String myName="";
+    String chatId="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-        myId = PreferenceUtil.getUserId(this);
-        myName = PreferenceUtil.getString(this,"name");
+
         Intent intent = getIntent();
         friendId = intent.getStringExtra("friend_id");
-        database = FirebaseDatabase.getInstance();
-        // node 구조
-        // /chat / myid = dsf@naver_com / friendid = dsfsd@gmail_com / msgkey 자동생성
-        msgRef = database.getReference("chat/"+myId+"/"+friendId);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        initView();
+        database = FirebaseDatabase.getInstance();
+        myId = PreferenceUtil.getUserId(this);
+        myName = PreferenceUtil.getString(this,"name");
 
+        // - node의 구조
+        // / chat / myid@naver_com / friend@naver_com
+        msgRef = database.getReference("chat");
+        // / friend / 내아이디 / 친구아이디
+        friendRef= database.getReference("friend").child(myId).child(friendId);
+
+        // chat_id가 생성되어있지 않으면 생성
+        friendRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.hasChild("chat_id")){
+                    chatId = (String) dataSnapshot.child("chat_id").getValue();
+                }else{
+                    chatId = msgRef.push().getKey();
+                    //  나의 친구목록에 있는 친구의 아이디 밑에 채팅방 번호를 부여
+                    friendRef.child("chat_id").setValue(chatId);
+                    // 친구의 친구목록에 있는  나의 아이디 밑에 채팅방 번호를 부여
+                    database.getReference("friend/"+friendId+"/"+myId+"/chat_id").setValue(chatId);
+                }
+                initView();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
     public void send(View view){
         String text = edit_msg.getText().toString();
-        if(text!=null && !"".equals(text)) {
-            String msgKey = msgRef.push().getKey();
+        if(text != null && !"".equals(text)) {
             Msg msg = new Msg();
             msg.user_id = myId;
             msg.msg = text;
             msg.name = myName;
             msg.time = System.currentTimeMillis()+"";
-            msgRef.child(msgKey).setValue(msg);
+
+            // chat / 채팅방번호 / msg / 메시지 번호
+            // 메시지 번호 생성
+            String msgKey = msgRef.child(chatId).push().getKey();
+            // 메시지 데이터 입력
+            msgRef.child(chatId).child(msgKey).setValue(msg);
+            // 친구노드에 채팅방 번호 추가
+            //friendRef.child("chat_id").setValue(chat_id);
+            edit_msg.setText("");
         }
     }
 
     private void initView(){
         msgList = findViewById(R.id.msgList);
         edit_msg = findViewById(R.id.edit_msg);
+
         adapter = new MessageAdapter(this);
         msgList.setAdapter(adapter);
         msgList.setLayoutManager(new LinearLayoutManager(this));
-        msgRef.addValueEventListener(new ValueEventListener() {
+        msgRef.child(chatId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<Msg> data = new ArrayList<>();
